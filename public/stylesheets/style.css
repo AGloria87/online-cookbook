@@ -1,12 +1,43 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+h3{
+  color: aliceblue;
 }
 
-a {
-  color: #00b7ff;
+.head{
+  background-color: #502E3A;
+  display: flex;
+  justify-content: space-around;
+
 }
 
-h1 {
-  color: 15px;
+.components{
+  display: flex;
+  align-items: center;
+  width: 800;
+  justify-content: space-evenly;
+  margin-right: 300px;
+}
+
+.user{
+  display: flex;
+  align-items: center;
+  width: 200;
+  justify-content: space-evenly;
+}
+
+.welcome{
+  color : #502E3A;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title{
+  font-size: 100px;
+}
+
+.recipes{
+  display: flex;
+  justify-content: space-around;
+  height: 350;
+  align-items: center;
 }

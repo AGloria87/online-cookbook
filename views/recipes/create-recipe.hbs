@@ -1,0 +1,27 @@
+<div id="form">
+  <h2>Create a New Recipe</h2>
+  <form action="/recipes/create" method="POST">
+    <div>
+      <label> Title
+        <input type="text" name="title" placeholder="Recipe Title" />
+      </label>
+
+      <label> Ingredients
+        <input type="text" name="ingredient1" placeholder="Ingredient"/>
+        <input type="text" name="ingredient2" placeholder="Ingredient"/>
+        <input type="text" name="ingredient3" placeholder="Ingredient"/>
+      </label>
+
+      <label> Directions
+        <input type="text" name="direction1" placeholder="Step 1..."/>
+        <input type="text" name="direction2" placeholder="Step 2..."/>
+        <input type="text" name="direction3" placeholder="Step 3..."/>
+      </label>
+    </div>
+    <button type="submit">Create Recipe</button>
+
+    {{#if errorMessage}}
+      <p class="error">{{errorMessage}}</p>
+    {{/if}}
+  </form>
+</div>

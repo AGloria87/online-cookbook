@@ -1,16 +1,24 @@
-<div id="form" class="auth-form-container">
-  <h2>Create a Recipe</h2>
-  <form action="/auth/signup" method="POST">
-    <div class="auth-form">
+<div id="form">
+  <h2>Create a New Recipe</h2>
+  <form action="/recipes/create" method="POST">
+    <div>
       <label> Title
         <input type="text" name="title" placeholder="Recipe Title" />
       </label>
 
-      <label> Email
-        <input type="text" name="email" placeholder="Your email" />
+      <label> Ingredients
+        <input type="text" name="ingredient1" placeholder="Ingredient"/>
+        <input type="text" name="ingredient2" placeholder="Ingredient"/>
+        <input type="text" name="ingredient3" placeholder="Ingredient"/>
+      </label>
+
+      <label> Directions
+        <input type="text" name="direction1" placeholder="Step 1..."/>
+        <input type="text" name="direction2" placeholder="Step 2..."/>
+        <input type="text" name="direction3" placeholder="Step 3..."/>
       </label>
     </div>
-    <button type="submit">Create Account</button>
+    <button type="submit">Create Recipe</button>
 
     {{#if errorMessage}}
       <p class="error">{{errorMessage}}</p>

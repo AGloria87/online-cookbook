@@ -9,6 +9,9 @@ const recipeSchema = new Schema(
       unique: true,
       trim: true,
     },
+    author: {
+      type: Schema.Types.ObjectId, ref: 'User'
+    },
     ingredients: {
       type: [{type: Schema.Types.ObjectId, ref: 'Ingredient'}],
       required: true,
@@ -21,7 +24,9 @@ const recipeSchema = new Schema(
     },
     photo: {
       type: String
-    }
+    },
+    rating: [Number],
+    comments: [{type: Schema.Types.ObjectId, ref: 'Comment'}],
   },
   {
     timestamps: true,

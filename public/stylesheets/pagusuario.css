@@ -1,0 +1,35 @@
+h3{
+    color: aliceblue;
+}
+
+.head{
+    background-color: #502E3A;
+    display: flex;
+    justify-content: space-around;
+  
+}
+  
+.components{
+    display: flex;
+    align-items: center;
+    width: 800;
+    justify-content: space-evenly;
+    margin-right: 300px;
+}
+  
+.user{
+    display: flex;
+    align-items: center;
+    width: 200;
+    justify-content: space-evenly;
+}
+
+.nameuser{
+    color: #502E3A;
+    display: flex;
+
+}
+h1{
+    color: #502E3A;
+    display: flex;
+}

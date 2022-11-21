@@ -1,0 +1,19 @@
+<div id="form" class="auth-form-container">
+  <h2>Create a Recipe</h2>
+  <form action="/auth/signup" method="POST">
+    <div class="auth-form">
+      <label> Title
+        <input type="text" name="title" placeholder="Recipe Title" />
+      </label>
+
+      <label> Email
+        <input type="text" name="email" placeholder="Your email" />
+      </label>
+    </div>
+    <button type="submit">Create Account</button>
+
+    {{#if errorMessage}}
+      <p class="error">{{errorMessage}}</p>
+    {{/if}}
+  </form>
+</div>

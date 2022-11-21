@@ -10,10 +10,15 @@ const recipeSchema = new Schema(
       trim: true,
     },
     author: {
-      type: Schema.Types.ObjectId, ref: 'User'
+      type: Schema.Types.ObjectId, ref: 'User',
+      default: "637bb62a7f2eac0f81eebc8e" // temporary
+    },
+    category: {
+      type: String,
+      enum: ["Breakfast", "Lunch", "Dinner", "Dessert", "Other"]
     },
     ingredients: {
-      type: [{type: Schema.Types.ObjectId, ref: 'Ingredient'}],
+      type: [String],
       required: true,
       unique: true,
       trim: true,

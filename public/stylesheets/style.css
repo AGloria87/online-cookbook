@@ -7,7 +7,6 @@
 html {
   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   color: #502E3A;
-  font-size: 180%;
 }
 
 
@@ -33,6 +32,7 @@ button {
 }
 
 .auth-form-container {
+  font-size: 180%;
   text-align: center;
   display: flex;
   flex-direction: column;

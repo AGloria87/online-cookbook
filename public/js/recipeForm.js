@@ -1,70 +1,51 @@
-// Adding and removing ingredients and directions from forms
+// Script for adding and removing ingredients and directions from forms
 let ingrsCount = 3;
 let dirsCount = 3;
 
+// Add Ingredient or Direction buttons
 const ingrAddBtn = document.querySelector("#ingredients-form .ingr-add");
 const dirAddBtn = document.querySelector("#directions-form .dir-add");
 
+// Divs containing Ingredient or Direction input fields
 const ingrsInputs = document.querySelector("#ingredients-inputs")
 const dirsInputs = document.querySelector("#directions-inputs")
 
-const dirRemoveBtns = document.querySelectorAll(".dir-remove");
+// Add HTML for ingredient or direction field
+function addInputField(type, count, inputs) {
+  let fieldHTML = `
+    <div class="${type}-field">
+      <input type="text" name="ingr${count}" placeholder="Ingredient"/>
+      <button type="button" class="remove-field">&times</button>
+    </div>
+  `;
+  inputs.innerHTML += fieldHTML;
+  fieldRemoveBtnsEL();
+  count++;
+}
+
+// Remove input field
+function removeField(event) {
+  const target = event.currentTarget;
+  const inputField = target.parentElement;
+  inputField.remove();
+}
+
+// Add event listener to all remove buttons for each input field
+function fieldRemoveBtnsEL() {
+  const fieldRemoveBtns = document.querySelectorAll(".remove-field");
+  for (let i = 0; i < fieldRemoveBtns.length; i++) {
+    fieldRemoveBtns[i].addEventListener('click', removeField);
+  }
+}
 
 ingrAddBtn.addEventListener("click", event => {
-  let ingrHTML = `
-    <div class="ingr-field">
-      <input type="text" name="ingr${ingrsCount}" placeholder="Ingredient"/>
-      <button type="button" class="ingr-remove">&times</button>
-    </div>
-    `;
-  ingrsInputs.innerHTML += ingrHTML;
-  ingrRemoveBtnsEL();
-  ingrsCount++;
+  addInputField("ingr", ingrsCount, ingrsInputs);
 });
 
 dirAddBtn.addEventListener("click", event => {
-  let dirHTML = `
-    <div class="dir-field">
-      <input type="text" name="ingr${dirsCount}" placeholder="Direction"/>
-      <button type="button" class="dir-remove">&times</button>
-    <div class="dir-field">
-    `;
-  dirsInputs.innerHTML += dirHTML;
-  dirRemoveBtnsEL();
-  dirsCount++;
+  addInputField("dir", dirsCount, dirsInputs);
 });
-
-
-// Add event listener to all buttons to remove each ingredient field
-function ingrRemoveBtnsEL() {
-  const ingrRemoveBtns = document.querySelectorAll(".ingr-remove");
-  for (let i = 0; i < ingrRemoveBtns.length; i++) {
-    ingrRemoveBtns[i].addEventListener('click', removeIngredient);
-  }
-}
-
-function removeIngredient(event) {
-  const target = event.currentTarget;
-  const ingredientRow = target.parentElement;
-  ingredientRow.remove();
-}
-
-// Add event listener to all buttons to remove each direction field
-function dirRemoveBtnsEL() {
-  const dirRemoveBtns = document.querySelectorAll(".dir-remove");
-  for (let i = 0; i < dirRemoveBtns.length; i++) {
-    dirRemoveBtns[i].addEventListener('click', removeDirection);
-  }
-}
-
-function removeDirection(event) {
-  const target = event.currentTarget;
-  const directionRow = target.parentElement;
-  directionRow.remove();
-}
 
 window.addEventListener('load', () => {
-  ingrRemoveBtnsEL();
-  dirRemoveBtnsEL();
+  fieldRemoveBtnsEL();
 });
-

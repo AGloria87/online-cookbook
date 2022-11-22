@@ -27,9 +27,38 @@ h3{
 .nameuser{
     color: #502E3A;
     display: flex;
+    justify-content: space-around;
+    margin-top: 50px;
+    font-size: 20px;
+
 
 }
-h1{
+.optionsuser{
     color: #502E3A;
     display: flex;
+    justify-content: space-around;
+    margin-top: 50px;
+}
+.receta{
+    display: flex;
+    width: 500px;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 100px;
+}
+.r{
+    display: flex;
+}
+.ingredientes{
+    margin-top: 100px;
+}
+.insco{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 50px;
+}
+.inscocambio{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 50px;
 }

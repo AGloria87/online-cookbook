@@ -1,0 +1,39 @@
+<div class = "head">
+    <div class = "components">
+        <h1>Nombre pagina</h1>
+        <h3>Breakfast</h3>
+        <h3>Lunch</h3>
+        <h3>Dinner</h3>
+        <h3>Dessert</h3>
+    </div>
+    <div class = "user">
+        <h3>Profile</h3>
+    </div>
+</div>
+<div class="r">
+    <div class='receta'>
+        <h1 class="nombrereceta">{{title}}</h1>
+        <h1 class="imgreceta" style="height:200px;"><img src="{{photo}}" alt="{{title}}" width="200" height="200"></h1>
+        <h1 class="ratingreceta">Rating{{Rating}}</h1>
+    </div>
+    <div class="ingredientes">
+        <h1>Ingredientes</h1>
+        <ul>
+            {{#each ingredients}}
+            <li>{{this}}</li>
+            {{/each}}
+        </ul>
+    </div>
+</div>
+<div class="insco">
+    <h1>Comentarios</h1>
+    <h1>Instrucciones</h1>
+</div>
+<div class="inscocambio">
+    <p>asdasdasdasddasd{{comments}}</p>
+    <ol>
+        {{#each directions}}
+        <li>{{this}}</li>
+        {{/each}}
+    </ol>
+</div>

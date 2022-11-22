@@ -58,5 +58,15 @@ router.post("/create", async (req, res, next) => {
   }
 });
 
+router.get('/detail/:id', async (req,res,next)=>{
+  try{
+  const {id} = req.params
+  const details = await Recipe.findById(id)
+  res.render("detail",details)
+ }catch(err){
+  console.log(err)
+ }
+  
+})
 
 module.exports = router;

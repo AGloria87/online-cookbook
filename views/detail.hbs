@@ -12,13 +12,17 @@
 </div>
 <div class="r">
     <div class='receta'>
-        <h1 class="nombrereceta">Nombre receta</h1>
-        <h1 class="imgreceta" style="height:200px;">A</h1>
-        <h1 class="ratingreceta">Rating</h1>
+        <h1 class="nombrereceta">{{title}}</h1>
+        <h1 class="imgreceta" style="height:200px;"><img src="{{photo}}" alt="{{title}}" width="200" height="200"></h1>
+        <h1 class="ratingreceta">Rating{{Rating}}</h1>
     </div>
     <div class="ingredientes">
         <h1>Ingredientes</h1>
-        <p>Lista de ingredientes</p>
+        <ul>
+            {{#each ingredients}}
+            <li>{{this}}</li>
+            {{/each}}
+        </ul>
     </div>
 </div>
 <div class="insco">
@@ -26,6 +30,10 @@
     <h1>Instrucciones</h1>
 </div>
 <div class="inscocambio">
-    <p>asdasdasdas</p>
-    <p>asdasdasdasdsadasdasdasdasda</p>
+    <p>asdasdasdasddasd{{comments}}</p>
+    <ol>
+        {{#each directions}}
+        <li>{{this}}</li>
+        {{/each}}
+    </ol>
 </div>

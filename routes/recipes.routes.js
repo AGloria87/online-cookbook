@@ -3,6 +3,7 @@ const router = express.Router();
 const isLoggedOut = require("../middleware/isLoggedOut");
 const isLoggedIn = require("../middleware/isLoggedIn");
 const Recipe = require("../models/Recipe.model");
+const User = require("../models/User.model");
 
 // Show all recipes
 router.get("/all", async (req, res, next) => {
@@ -24,8 +25,32 @@ router.get("/create", (req, res, next) => {
 // POST - Send information to create new recipe
 router.post("/create", async (req, res, next) => {
   try {
-    const formInfo = req.body;
-    console.log(formInfo);
+    const { title, category } = req.body;
+    const author = req.session.currentUser;
+    const ingredients = [];
+    const directions = [];
+
+    for (key in req.body) {
+      if (key.startsWith("ingr")) {
+        ingredients.push(req.body[key]);
+      }
+      if (key.startsWith("dir")) {
+        directions.push(req.body[key]);
+      }
+    }
+
+    // create new recipe
+    const newRecipe = await Recipe.create({
+      title,
+      category,
+      author,
+      ingredients,
+      directions
+    });
+
+    // add new recipe to user's created recipes
+    const userRecipes = await User.findByIdAndUpdate(author, {$push: {createdRecipes:newRecipe}}, {new: true});
+
     res.redirect("/recipes/all");
   }
   catch (err) {

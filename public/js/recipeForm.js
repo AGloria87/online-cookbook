@@ -11,16 +11,18 @@ const ingrsInputs = document.querySelector("#ingredients-inputs")
 const dirsInputs = document.querySelector("#directions-inputs")
 
 // Add HTML for ingredient or direction field
-function addInputField(type, count, inputs) {
+function addInputField(type, placeholder, count, inputs) {
+  let fieldDiv = document.createElement("div")
+  fieldDiv.classList.add(`${type}-field`)
+
   let fieldHTML = `
-    <div class="${type}-field">
-      <input type="text" name="ingr${count}" placeholder="Ingredient"/>
-      <button type="button" class="remove-field">&times</button>
-    </div>
+    <input type="text" name="${type}${count}" placeholder="${placeholder}"/>
+    <button type="button" class="remove-field">&times</button>
   `;
-  inputs.innerHTML += fieldHTML;
+
+  fieldDiv.innerHTML += fieldHTML;
+  inputs.appendChild(fieldDiv);
   fieldRemoveBtnsEL();
-  count++;
 }
 
 // Remove input field
@@ -39,11 +41,13 @@ function fieldRemoveBtnsEL() {
 }
 
 ingrAddBtn.addEventListener("click", event => {
-  addInputField("ingr", ingrsCount, ingrsInputs);
+  addInputField("ingr", "Ingredient", ingrsCount, ingrsInputs);
+  ingrsCount++;
 });
 
 dirAddBtn.addEventListener("click", event => {
-  addInputField("dir", dirsCount, dirsInputs);
+  addInputField("dir", "Direction", dirsCount, dirsInputs);
+  dirsCount++;
 });
 
 window.addEventListener('load', () => {

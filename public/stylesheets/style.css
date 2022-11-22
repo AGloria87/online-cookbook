@@ -9,16 +9,27 @@ html {
   color: #502E3A;
 }
 
-
 input[type=text],
 input[type=email],
-input[type=password] {
+input[type=password],
+select {
   font: inherit;
   font-size: inherit;
   color: inherit;
   border: 1px solid #502E3A;
   margin: 8px 2px;
   border-radius: 4px;
+  background-color: white;
+  padding-left: 0.25em;
+}
+
+select {
+  background-image: url("../images/ui/selectPointer.svg");
+  background-repeat: no-repeat;
+  background-position-x: 95%;
+  background-position-y: 50%;
+  padding-right: 1.4em;
+  appearance: none;
 }
 
 button {
@@ -94,4 +105,18 @@ h3{
   justify-content: space-around;
   height: 350;
   align-items: center;
+}
+
+.recipe-form-container {
+  font-size: 160%;
+  display: flex;
+  flex-direction: column;
+}
+
+.remove-field {
+  border-radius: 50%;
+  padding: 0 10px;
+  background-color: white;
+  color: #502E3A;
+  border: 2px solid #502E3A;
 }

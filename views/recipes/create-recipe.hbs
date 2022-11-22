@@ -1,10 +1,21 @@
-<div id="form">
+<div id="form" class="recipe-form-container">
   <h2>Create a New Recipe</h2>
   <form action="/recipes/create" method="POST">
     <div>
-      <label> Title
+      <section id="title-form">
+        <label>Title</label>
         <input type="text" name="title" placeholder="Recipe Title" />
-      </label>
+        <div class="category-select">
+          <label for="category">Category</label>
+          <select name="category">
+            <option value="Breakfast">Breakfast</option>
+            <option value="Lunch">Lunch</option>
+            <option value="Dinner">Dinner</option>
+            <option value="Dessert">Dessert</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+      </section>
 
       <section id="ingredients-form">
         <label>Ingredients</label>
@@ -58,5 +69,5 @@
       <p class="error">{{errorMessage}}</p>
     {{/if}}
   </form>
-  <script src="/js/recipeForm.js"></script>
 </div>
+<script src="/js/recipeForm.js"></script>

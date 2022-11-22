@@ -19,7 +19,19 @@ router.get("/all", async (req, res, next) => {
 // GET - show the form to create a recipe
 router.get("/create", (req, res, next) => {
   res.render("recipes/create-recipe");
-})
+});
+
+// POST - Send information to create new recipe
+router.post("/create", async (req, res, next) => {
+  try {
+    const formInfo = req.body;
+    console.log(formInfo);
+    res.redirect("/recipes/all");
+  }
+  catch (err) {
+    console.log(err);
+  }
+});
 
 
 module.exports = router;

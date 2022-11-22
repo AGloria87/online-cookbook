@@ -9,4 +9,8 @@ router.get("/", (req, res, next) => {
 router.get("/pagusuario", (req, res, next) => {
   res.render("pagusuario");
 });
+
+router.get('/detail',(req,res,next)=>{
+  res.render("detail")
+})
 module.exports = router;

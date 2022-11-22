@@ -6,17 +6,51 @@
         <input type="text" name="title" placeholder="Recipe Title" />
       </label>
 
-      <label> Ingredients
-        <input type="text" name="ingredient1" placeholder="Ingredient"/>
-        <input type="text" name="ingredient2" placeholder="Ingredient"/>
-        <input type="text" name="ingredient3" placeholder="Ingredient"/>
-      </label>
+      <section id="ingredients-form">
+        <label>Ingredients</label>
+        <div id="ingredients-inputs">
 
-      <label> Directions
-        <input type="text" name="direction1" placeholder="Step 1..."/>
-        <input type="text" name="direction2" placeholder="Step 2..."/>
-        <input type="text" name="direction3" placeholder="Step 3..."/>
-      </label>
+          <div class="ingr-field">
+            <input type="text" name="ingr0" placeholder="Ingredient"/>
+            <button type="button" class="ingr-remove">&times</button>
+          </div>
+
+          <div class="ingr-field">
+            <input type="text" name="ingr1" placeholder="Ingredient"/>
+            <button type="button" class="ingr-remove">&times</button>
+          </div>
+
+          <div class="ingr-field">
+            <input type="text" name="ingr2" placeholder="Ingredient"/>
+            <button type="button" class="ingr-remove">&times</button>
+          </div>
+
+        </div>
+          <button type="button" class="ingr-add">+ Add Ingredient</button>
+      </section>
+
+      <section id="directions-form">
+        <label>Directions</label>
+        <div id="directions-inputs">
+
+          <div class="dir-field">
+            <input type="text" name="dir0" placeholder="Direction"/>
+            <button type="button" class="dir-remove">&times</button>
+          </div>
+
+          <div class="dir-field">
+            <input type="text" name="dir1" placeholder="Direction"/>
+            <button type="button" class="dir-remove">&times</button>
+          </div>
+
+          <div class="dir-field">
+            <input type="text" name="dir2" placeholder="Direction"/>
+            <button type="button" class="dir-remove">&times</button>
+          </div>
+
+        </div>
+        <button type="button" class="dir-add">+ Add Direction</button>
+      </section>
     </div>
     <button type="submit">Create Recipe</button>
 
@@ -24,4 +58,5 @@
       <p class="error">{{errorMessage}}</p>
     {{/if}}
   </form>
+  <script src="/js/recipeForm.js"></script>
 </div>

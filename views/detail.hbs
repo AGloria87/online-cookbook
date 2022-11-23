@@ -2,7 +2,8 @@
     <div class='receta'>
         <h1 class="nombrereceta">{{title}}</h1>
         <h1 class="imgreceta" style="height:200px;"><img src="{{photo}}" alt="{{title}}" width="200" height="200"></h1>
-        <h1 class="ratingreceta">Rating{{Rating}}</h1>
+        {{> starRating}}
+
     </div>
     <div class="ingredientes">
         <h1>Ingredientes</h1>

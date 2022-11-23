@@ -169,3 +169,16 @@ nav a {
 .recipecontainer{
   display: flex;
 }
+
+.rating {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0.5em;
+}
+
+.rating-info {
+  font-weight: bold;
+  font-size: 120%;
+  margin-left: 0.5em;
+}

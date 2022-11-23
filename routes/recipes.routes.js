@@ -16,6 +16,18 @@ router.get("/all", async (req, res, next) => {
   }
 });
 
+// Show recipes by category
+router.get("/:category", async (req, res, next) => {
+  try {
+    const { category } = req.params;
+    const recipesList = await Recipe.find({ category: category });
+    res.render("recipes/all-recipes", { recipesList });
+  }
+  catch (err) {
+    console.log(err);
+  }
+});
+
 // Routes to create recipes
 // GET - show the form to create a recipe
 router.get("/create", isLoggedIn, (req, res, next) => {

@@ -139,3 +139,16 @@ nav a {
 .recipecontainer{
   display: flex;
 }
+
+.commentscontain{
+  box-shadow: 0 0 5px 1px #502E3A;
+}
+.commentscontain h2{
+  font-size: 20px;
+
+}
+
+.commentscontain h3{
+  font-size: 15px;
+  color: #502E3A;
+}

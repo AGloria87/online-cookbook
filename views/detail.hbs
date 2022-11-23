@@ -19,10 +19,7 @@
     <h1>Instrucciones</h1>
 </div>
 <div class="inscocambio">
-    {{#each comments}}
-        <strong>{{author.username}}</strong>
-        <p>{{text}}</p>
-    {{/each}}
+    <p>{{>comments}}</p>
     <ol>
         {{#each directions}}
         <li>{{this}}</li>

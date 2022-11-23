@@ -4,11 +4,12 @@ const isLoggedOut = require("../middleware/isLoggedOut");
 const isLoggedIn = require("../middleware/isLoggedIn");
 const Recipe = require("../models/Recipe.model");
 const User = require("../models/User.model");
+const Comment = require("../models/Comment.model");
 
 // Show all recipes
 router.get("/all", async (req, res, next) => {
   try {
-    const recipesList = await Recipe.find();
+    const recipesList = await Recipe.find().populate("author");
     res.render("recipes/all-recipes", { recipesList });
   }
   catch (err) {
@@ -20,7 +21,7 @@ router.get("/all", async (req, res, next) => {
 router.get("/category/:category", async (req, res, next) => {
   try {
     const { category } = req.params;
-    const recipesList = await Recipe.find({ category: category });
+    const recipesList = await Recipe.find({ category: category }).populate("author");
     res.render("recipes/all-recipes", { recipesList });
   }
   catch (err) {
@@ -70,11 +71,19 @@ router.post("/create", isLoggedIn, async (req, res, next) => {
   }
 });
 
-router.get('/detail/:id', async (req,res,next)=>{
-  try{
-  const {id} = req.params
+router.get('/detail/:id', async (req, res, next)=>{
+  try {
+  const { id } = req.params
   const details = await Recipe.findById(id)
-  res.render("detail",details)
+                              .populate('comments')
+                              .populate({
+                                          path: 'comments',
+                                          populate: {
+                                            path: 'author',
+                                            model: 'User'
+                                          }
+                                        });
+  res.render("detail", details);
  }catch(err){
   console.log(err)
  }

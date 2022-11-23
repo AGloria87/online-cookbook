@@ -6,12 +6,10 @@ const recipeSchema = new Schema(
     title: {
       type: String,
       required: false,
-      unique: true,
       trim: true,
     },
     author: {
       type: Schema.Types.ObjectId, ref: 'User',
-      default: "637bb62a7f2eac0f81eebc8e" // temporary
     },
     category: {
       type: String,
@@ -20,12 +18,12 @@ const recipeSchema = new Schema(
     ingredients: {
       type: [String],
       required: true,
-      unique: true,
       trim: true,
     },
     directions: {
       type: [String],
       required: true,
+      trim: true
     },
     photo: {
       type: String

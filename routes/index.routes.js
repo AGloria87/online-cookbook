@@ -13,7 +13,4 @@ router.get("/userProfile", isLoggedIn, (req, res, next) => {
   res.render("user/userProfile");
 });
 
-router.get('/detail',(req,res,next)=>{
-  res.render("detail")
-})
 module.exports = router;

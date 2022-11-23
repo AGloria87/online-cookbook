@@ -32,7 +32,7 @@ select {
   appearance: none;
 }
 
-button {
+button, .buttonbox {
   font-size: inherit;
   font: inherit;
   border: none;
@@ -119,4 +119,21 @@ h3{
   background-color: white;
   color: #502E3A;
   border: 2px solid #502E3A;
+}
+
+.box{
+  display: flex;
+  width: 350px;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 0 5px 1px #502E3A;
+}
+
+.buttonbox a{
+  text-decoration: none;
+  color: white;
+}
+
+.recipecontainer{
+  display: flex;
 }

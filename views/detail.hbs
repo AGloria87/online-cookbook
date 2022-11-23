@@ -19,7 +19,9 @@
     <h1>Instrucciones</h1>
 </div>
 <div class="inscocambio">
+    {{#each comments}}
     <p>{{>comments}}</p>
+    {{/each}}
     <ol>
         {{#each directions}}
         <li>{{this}}</li>

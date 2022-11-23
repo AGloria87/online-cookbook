@@ -17,7 +17,7 @@ router.get("/all", async (req, res, next) => {
 });
 
 // Show recipes by category
-router.get("/:category", async (req, res, next) => {
+router.get("/category/:category", async (req, res, next) => {
   try {
     const { category } = req.params;
     const recipesList = await Recipe.find({ category: category });

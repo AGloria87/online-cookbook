@@ -109,11 +109,45 @@ nav a {
   align-items: center;
 }
 
-.recipe-form-container {
-  font-size: 160%;
+.recipe-form-container form {
+  font-size: 150%;
+  margin: 3vh 0;
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
+
+.recipe-form-inputs {
+  margin: 3vh auto;
+  display: flex;
+  justify-content: flex-start;
+  width: 97%;
+}
+
+#title-form {
+  text-align: right;
+}
+
+.recipe-form-inputs section {
+  margin: 0 2vw;
+}
+
+#ingredients-form {
+  width: 20%;
+}
+
+.ingr-field input {
+  width: 87%;
+}
+
+#directions-form {
+  width: 40%;
+}
+
+.dir-field input {
+  width: 90%;
+}
+
 
 .remove-field {
   border-radius: 50%;

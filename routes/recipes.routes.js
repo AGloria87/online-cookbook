@@ -18,12 +18,12 @@ router.get("/all", async (req, res, next) => {
 
 // Routes to create recipes
 // GET - show the form to create a recipe
-router.get("/create", (req, res, next) => {
+router.get("/create", isLoggedIn, (req, res, next) => {
   res.render("recipes/create-recipe");
 });
 
 // POST - Send information to create new recipe
-router.post("/create", async (req, res, next) => {
+router.post("/create", isLoggedIn, async (req, res, next) => {
   try {
     const { title, category } = req.body;
     const author = req.session.currentUser;
@@ -66,7 +66,7 @@ router.get('/detail/:id', async (req,res,next)=>{
  }catch(err){
   console.log(err)
  }
-  
+
 })
 
 module.exports = router;

@@ -1,13 +1,16 @@
 const express = require('express');
 const router = express.Router();
 
+const isLoggedOut = require("../middleware/isLoggedOut");
+const isLoggedIn = require("../middleware/isLoggedIn");
+
 /* GET home page */
 router.get("/", (req, res, next) => {
   res.render("index");
 });
 
-router.get("/pagusuario", (req, res, next) => {
-  res.render("pagusuario");
+router.get("/userProfile", isLoggedIn, (req, res, next) => {
+  res.render("user/userProfile");
 });
 
 router.get('/detail',(req,res,next)=>{

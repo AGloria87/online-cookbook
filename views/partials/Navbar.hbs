@@ -9,9 +9,14 @@
     <a href="#">Dessert</a>
   </div>
   <div class="user">
+    {{#unless session.currentUser}}
       <a href="/auth/signup">Signup</a>
       <a href="/auth/login">Login</a>
-      <a href="/pagusuario">Profile</a>
+    {{/unless}}
+    {{#if session.currentUser}}
+      <a href="/userProfile">{{session.currentUser.username}}</a>
       <a href="/auth/logout">Logout</a>
-  </div>
+    {{/if}}
+  </di
+  v>
 </nav>

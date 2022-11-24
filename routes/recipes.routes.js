@@ -187,7 +187,7 @@ router.post("/:id/feedback", isLoggedIn, async (req, res, next) => {
         text: commentText
       });
 
-      const addComment = await Recipe.findByIdAndUpdate(id, {$push: { rating: rating }}, { new: true });
+      const addComment = await Recipe.findByIdAndUpdate(id, {$push: { comments: newComment }}, { new: true });
     }
 
     res.redirect(`/recipes/${id}/detail`);

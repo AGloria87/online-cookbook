@@ -82,8 +82,9 @@ router.get('/detail/:id', async (req, res, next)=>{
                                             path: 'author',
                                             model: 'User'
                                           }
-                                        });
-  res.render("detail", details);
+                                        })
+                              .populate("author");
+  res.render("recipes/detail", details);
  }catch(err){
   console.log(err)
  }

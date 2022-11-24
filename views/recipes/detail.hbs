@@ -1,6 +1,9 @@
 <div class="r">
     <div class='receta'>
         <h1 class="nombrereceta">{{title}}</h1>
+        {{#compare session.currentUser.username author.username}}
+            <a href="#">Edit Recipe</a>
+        {{/compare}}
         <h1 class="imgreceta" style="height:200px;"><img src="{{photo}}" alt="{{title}}" width="200" height="200"></h1>
         {{> starRating}}
 

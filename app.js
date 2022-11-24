@@ -14,6 +14,10 @@ const express = require("express");
 const hbs = require("hbs");
 hbs.registerPartials(__dirname + "/views/partials");
 
+hbs.registerHelper("compare", function(a, b, options){
+  return a===b ? options.fn(this) : options.inverse(this);
+});
+
 const app = express();
 
 // ℹ️ This function is getting exported from the config folder. It runs most pieces of middleware

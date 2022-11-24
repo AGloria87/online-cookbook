@@ -12,6 +12,7 @@ html {
 input[type=text],
 input[type=email],
 input[type=password],
+textarea,
 select {
   font: inherit;
   font-size: inherit;
@@ -42,6 +43,10 @@ button, .buttonbox {
   background-color: #502E3A;
   color: white;
   cursor: pointer;
+}
+
+textarea {
+  resize: none;
 }
 
 .auth-form-container {
@@ -194,4 +199,66 @@ nav a {
 .commentscontain h3{
   font-size: 15px;
   color: #502E3A;
+}
+
+.recipe-details-container {
+  display: flex;
+  width: fit-content;
+  margin: 6vh auto;
+}
+
+.recipe-details-container section {
+  margin: 0 2vw;
+}
+
+.recipe-overview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.recipe-feedback {
+  display: inherit;
+  flex-direction: inherit;
+  padding: 2vw;
+}
+
+.comments-empty {
+  background-color: #DDD;
+  text-align: center;
+  padding: 3vh 3vw;
+  border-radius: 10px;
+}
+
+.feedback-form {
+  display: inherit;
+  flex-direction: inherit;
+  margin-top: 3vh;
+}
+
+.rating-field{
+  text-align: center;
+}
+
+.rating-field select{
+  width: 30%;
+}
+
+.write-comment {
+  display: flex;
+  flex-direction: column;
+}
+
+.recipe-info div {
+  margin-bottom: 4vh;
+}
+
+.recipe-author-tools {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+ul, ol {
+  margin-left: 1em;
 }

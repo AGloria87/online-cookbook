@@ -26,7 +26,8 @@ const recipeSchema = new Schema(
       trim: true
     },
     photo: {
-      type: String
+      type: String,
+      default: "./images/recipeDefault.png"
     },
     rating: [Number],
     comments: [{type: Schema.Types.ObjectId, ref: 'Comment'}],

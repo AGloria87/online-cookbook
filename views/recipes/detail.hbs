@@ -1,40 +1,70 @@
-<div class="r">
-    <div class='receta'>
-        <h1 class="nombrereceta">{{title}}</h1>
-        <h1 class="imgreceta" style="height:200px;"><img src="{{photo}}" alt="{{title}}" width="200" height="200"></h1>
-        {{> starRating}}
-
+<div class="recipe-details-container">
+  <section class="recipe-overview">
+    <div class="recipe-title-card">
+      <h1>{{title}}</h1>
+      <img src="{{photo}}" alt="{{title}}" width="200" height="200">
+      {{> starRating}}
     </div>
-    <div class="ingredientes">
-        <h1>Ingredientes</h1>
-        <ul>
-            {{#each ingredients}}
-            <li>{{this}}</li>
+    <section class="recipe-feedback">
+      <div class="recipe-comments">
+        <h1>Comments</h1>
+        <div class="comments-container">
+          {{#if comments}}
+            {{#each comments}}
+              <div>{{>comments}}</div>
             {{/each}}
-        </ul>
-    </div>
-</div>
-<div class="insco">
-    <h1>Comentarios</h1>
-    <h1>Instrucciones</h1>
-</div>
-<div class="inscocambio">
-    {{#each comments}}
-    <p>{{>comments}}</p>
-    {{/each}}
-    <ol>
-        {{#each directions}}
-        <li>{{this}}</li>
-        {{/each}}
-    </ol>
-</div>
+          {{else}}
+            <div class="comments-empty">
+              <strong>No Comments Yet!</strong>
+            </div>
+          {{/if}}
+        </div>
+      </div>
+      <form class="feedback-form" action="" method="post">
+        <h2>Rate and Comment this Recipe!</h2>
+        <div class="rating-field">
+          <label for="rating">Rating</label>
+          <select name="rating" id="feedback-rating">
+            <option value=5>5</option>
+            <option value=4>4</option>
+            <option value=3>3</option>
+            <option value=2>2</option>
+            <option value=1>1</option>
+            <option value=0>0</option>
+          </select>
+        </div>
+        <div class="write-comment">
+          <label for="feedback-comment">Leave a comment<cite>  (optional)</cite></label>
+          <textarea name="feedback-comment" placeholder="Your comment here"></textarea>
+        </div>
+        <button type="submit">Submit</button>
+      </form>
 
-{{#eq session.currentUser.username author.username}}
-    <section class="author-tools">
-        <a class="buttonbox" href="/recipes/{{id}}/edit">Edit Recipe</a>
-        <form action="/recipes/{{id}}/delete" method="post">
-            <button type="submit">Delete Recipe</button>
-        </form>
     </section>
-{{/eq}}
+  </section>
+  <section class="recipe-info">
+    <div>
+      <h1>Ingredients</h1>
+      <ul>
+        {{#each ingredients}}
+          <li>{{this}}</li>
+        {{/each}}
+      </ul>
+    </div>
+    <div class="directions">
+      <h1>Directions</h1>
+      <ol>
+        {{#each directions}}
+          <li>{{this}}</li>
+        {{/each}}
+      </ol>
+    </div>
+    {{#eq session.currentUser.username author.username}}
+        <form class="recipe-author-tools" action="/recipes/{{id}}/delete" method="post">
+          <a class="buttonbox" href="/recipes/{{id}}/edit">Edit Recipe</a>
+          <button type="submit">Delete Recipe</button>
+        </form>
+    {{/eq}}
+  </section>
+</div>
 <script src="/js/calculateRating.js"></script>

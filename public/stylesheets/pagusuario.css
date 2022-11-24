@@ -46,19 +46,3 @@ h3{
     align-items: center;
     margin-top: 100px;
 }
-.r{
-    display: flex;
-}
-.ingredientes{
-    margin-top: 100px;
-}
-.insco{
-    display: flex;
-    justify-content: space-around;
-    margin-top: 50px;
-}
-.inscocambio{
-    display: flex;
-    justify-content: space-around;
-    margin-top: 50px;
-}

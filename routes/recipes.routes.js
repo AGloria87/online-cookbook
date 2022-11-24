@@ -60,8 +60,10 @@ router.post("/create", isLoggedIn, fileUploader.single("Recipe-image"), async (r
       category,
       author,
       ingredients,
-      directions
+      directions,
+      photo : req.file.path 
     });
+    console.log(newRecipe)
 
     // add new recipe to user's created recipes
     const userRecipes = await User.findByIdAndUpdate(author, {$push: {createdRecipes:newRecipe}}, {new: true});
@@ -86,7 +88,7 @@ router.get('/:id/detail', async (req, res, next)=>{
                                           }
                                         })
                               .populate("author");
-  res.render("recipes/detail", details);
+  res.render("recipes/detail", details,);
  }catch(err){
   console.log(err)
  }

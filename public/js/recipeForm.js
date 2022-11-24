@@ -1,14 +1,13 @@
-// Script for adding and removing ingredients and directions from forms
-let ingrsCount = 3;
-let dirsCount = 3;
-
 // Add Ingredient or Direction buttons
 const ingrAddBtn = document.querySelector("#ingredients-form .ingr-add");
 const dirAddBtn = document.querySelector("#directions-form .dir-add");
 
 // Divs containing Ingredient or Direction input fields
-const ingrsInputs = document.querySelector("#ingredients-inputs")
-const dirsInputs = document.querySelector("#directions-inputs")
+const ingrsInputs = document.querySelector("#ingredients-inputs");
+const dirsInputs = document.querySelector("#directions-inputs");
+
+let ingrsCount = ingrsInputs.children.length;
+let dirsCount = dirsInputs.children.length;
 
 // Add HTML for ingredient or direction field
 function addInputField(type, placeholder, count, inputs) {

@@ -1,0 +1,56 @@
+<div id="form" class="recipe-form-container">
+  <form action="/recipes/{{id}}/edit" method="POST">
+    <h2>Edit Recipe</h2>
+    <div class="recipe-form-inputs">
+      <section id="title-form">
+        <label>Title</label>
+        <input type="text" name="title" placeholder="Recipe Title" value="{{this.title}}"/>
+        <div class="category-select">
+          <label for="category">Category</label>
+          <select name="category">
+            <option value="Breakfast" {{#eq category "Breakfast"}}selected{{/eq}}>Breakfast</option>
+            <option value="Lunch" {{#eq category "Lunch"}}selected{{/eq}}>Lunch</option>
+            <option value="Dinner" {{#eq category "Dinner"}}selected{{/eq}}>Dinner</option>
+            <option value="Dessert" {{#eq category "Dessert"}}selected{{/eq}}>Dessert</option>
+            <option value="Other" {{#eq category "Other"}}selected{{/eq}}>Other</option>
+          </select>
+        </div>
+      </section>
+
+      <section id="ingredients-form">
+        <label>Ingredients</label>
+        <div id="ingredients-inputs">
+          {{#each ingredients}}
+            <div class="ingr-field">
+              <input type="text" name="ingr{{@index}}" placeholder="Ingredient" value="{{this}}"/>
+              <button type="button" class="remove-field">&times</button>
+            </div>
+          {{/each}}
+
+        </div>
+          <button type="button" class="ingr-add">+ Add Ingredient</button>
+      </section>
+
+      <section id="directions-form">
+        <label>Directions</label>
+        <div id="directions-inputs">
+
+          {{#each directions}}
+            <div class="dir-field">
+              <input type="text" name="dir{{@index}}" placeholder="Direction" value="{{this}}"/>
+              <button type="button" class="remove-field">&times</button>
+            </div>
+          {{/each}}
+
+        </div>
+        <button type="button" class="dir-add">+ Add Direction</button>
+      </section>
+    </div>
+    <button type="submit">Edit Recipe</button>
+
+    {{#if errorMessage}}
+      <p class="error">{{errorMessage}}</p>
+    {{/if}}
+  </form>
+</div>
+<script src="/js/recipeForm.js"></script>

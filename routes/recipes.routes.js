@@ -88,7 +88,84 @@ router.get('/detail/:id', async (req, res, next)=>{
  }catch(err){
   console.log(err)
  }
+});
 
+// Edit recipe routes
+//GET - show the form with previous recipe info
+router.get("/:id/edit", isLoggedIn, async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const recipe = await Recipe.findById(id)
+    res.render("recipes/edit-recipe", recipe);
+  }
+  catch (err) {
+    console.log(err);
+  }
+});
+
+// WIP
+// POST - Send information to update recipe
+router.post("/:id/edit", isLoggedIn, async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const { title, category } = req.body;
+    const ingredients = [];
+    const directions = [];
+
+    for (key in req.body) {
+      if (key.startsWith("ingr")) {
+        ingredients.push(req.body[key]);
+      }
+      if (key.startsWith("dir")) {
+        directions.push(req.body[key]);
+      }
+    }
+
+    // create new recipe
+    const updatedRecipe = await Recipe.findByIdAndUpdate(id, {
+      title: title,
+      category: category,
+      ingredients: ingredients,
+      directions: directions
+    }, {new: true});
+
+    res.redirect(`/recipes/detail/${id}`);
+  }
+  catch (err) {
+    console.log(err);
+  }
+});
+
+// Delete recipe
+router.post("/:id/delete", isLoggedIn, async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const deletedRecipe = await Recipe.findByIdAndDelete(id);
+    res.redirect("/userProfile")
+  }
+  catch (err) {
+    console.log(err);
+  }
 })
+
+router.get('/detail/:id', async (req, res, next)=>{
+  try {
+  const { id } = req.params
+  const details = await Recipe.findById(id)
+                              .populate('comments')
+                              .populate({
+                                          path: 'comments',
+                                          populate: {
+                                            path: 'author',
+                                            model: 'User'
+                                          }
+                                        })
+                              .populate("author");
+  res.render("recipes/detail", details);
+ }catch(err){
+  console.log(err)
+ }
+});
+
 
 module.exports = router;

@@ -14,8 +14,15 @@ const express = require("express");
 const hbs = require("hbs");
 hbs.registerPartials(__dirname + "/views/partials");
 
-hbs.registerHelper("compare", function(a, b, options){
-  return a===b ? options.fn(this) : options.inverse(this);
+// Helpers for comparing values
+// Evaluates if equal
+hbs.registerHelper("eq", function(a, b, options){
+  return a === b ? options.fn(this) : options.inverse(this);
+});
+
+// Evaluates if not equal
+hbs.registerHelper("neq", function(a, b, options){
+  return a !== b ? options.fn(this) : options.inverse(this);
 });
 
 const app = express();

@@ -83,6 +83,11 @@ nav a {
   color: white;
 }
 
+.logo {
+  width: 70%;
+  margin: 1vh 0;
+}
+
 .components{
   display: flex;
   align-items: center;

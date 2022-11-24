@@ -7,7 +7,7 @@
         <a href="/recipes/create">Create recipe</a>
         <div class="user-recipes-container">
             {{#each createdRecipes}}
-                {{>recipecard}}
+                {{>recipecard this}}
             {{/each}}
         </div>
     </div>
@@ -15,7 +15,7 @@
         <h1>Favorite Recipes</h1>
         <div class="user-favrecipes-container">
             {{#each favoriteRecipes}}
-                {{>recipecard}}
+                {{>recipecard this}}
             {{/each}}
         </div>
     </div>

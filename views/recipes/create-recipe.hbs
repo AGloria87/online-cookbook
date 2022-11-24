@@ -1,5 +1,5 @@
 <div id="form" class="recipe-form-container">
-  <form action="/recipes/create" method="POST">
+  <form action="/recipes/create" method="POST" enctype="multipart/form-data">
     <h2>Create a New Recipe</h2>
     <div class="recipe-form-inputs">
       <section id="title-form">
@@ -14,6 +14,11 @@
             <option value="Dessert">Dessert</option>
             <option value="Other">Other</option>
           </select>
+        </div>
+        <div>
+        <label>Image
+        <input type="file" name="Recipe-image" class="recipeimage" accept=".jpg , .png"/>
+        </label>
         </div>
       </section>
 
@@ -64,6 +69,7 @@
       </section>
     </div>
     <button type="submit">Create Recipe</button>
+    
 
     {{#if errorMessage}}
       <p class="error">{{errorMessage}}</p>

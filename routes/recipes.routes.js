@@ -5,6 +5,7 @@ const isLoggedIn = require("../middleware/isLoggedIn");
 const Recipe = require("../models/Recipe.model");
 const User = require("../models/User.model");
 const Comment = require("../models/Comment.model");
+const fileUploader = require('../config/cloudinary.config');
 
 // Show all recipes
 router.get("/all", async (req, res, next) => {
@@ -36,7 +37,7 @@ router.get("/create", isLoggedIn, (req, res, next) => {
 });
 
 // POST - Send information to create new recipe
-router.post("/create", isLoggedIn, async (req, res, next) => {
+router.post("/create", isLoggedIn, fileUploader.single("Recipe-image"), async (req, res, next) => {
   try {
     const { title, category } = req.body;
     const author = req.session.currentUser;

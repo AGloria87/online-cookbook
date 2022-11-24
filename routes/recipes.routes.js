@@ -64,14 +64,14 @@ router.post("/create", isLoggedIn, async (req, res, next) => {
     // add new recipe to user's created recipes
     const userRecipes = await User.findByIdAndUpdate(author, {$push: {createdRecipes:newRecipe}}, {new: true});
 
-    res.redirect("/recipes/all");
+    res.redirect("/userProfile");
   }
   catch (err) {
     console.log(err);
   }
 });
 
-router.get('/detail/:id', async (req, res, next)=>{
+router.get('/:id/detail', async (req, res, next)=>{
   try {
   const { id } = req.params
   const details = await Recipe.findById(id)
@@ -103,7 +103,6 @@ router.get("/:id/edit", isLoggedIn, async (req, res, next) => {
   }
 });
 
-// WIP
 // POST - Send information to update recipe
 router.post("/:id/edit", isLoggedIn, async (req, res, next) => {
   try {
@@ -121,7 +120,7 @@ router.post("/:id/edit", isLoggedIn, async (req, res, next) => {
       }
     }
 
-    // create new recipe
+    // Update recipe with new data
     const updatedRecipe = await Recipe.findByIdAndUpdate(id, {
       title: title,
       category: category,
@@ -129,7 +128,7 @@ router.post("/:id/edit", isLoggedIn, async (req, res, next) => {
       directions: directions
     }, {new: true});
 
-    res.redirect(`/recipes/detail/${id}`);
+    res.redirect(`/recipes/${id}/detail`);
   }
   catch (err) {
     console.log(err);
@@ -141,14 +140,14 @@ router.post("/:id/delete", isLoggedIn, async (req, res, next) => {
   try {
     const { id } = req.params;
     const deletedRecipe = await Recipe.findByIdAndDelete(id);
-    res.redirect("/userProfile")
+    res.redirect("/userProfile");
   }
   catch (err) {
     console.log(err);
   }
 })
 
-router.get('/detail/:id', async (req, res, next)=>{
+router.get('/:id/detail', async (req, res, next)=>{
   try {
   const { id } = req.params
   const details = await Recipe.findById(id)

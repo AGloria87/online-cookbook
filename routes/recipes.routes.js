@@ -6,6 +6,7 @@ const Recipe = require("../models/Recipe.model");
 const User = require("../models/User.model");
 const Comment = require("../models/Comment.model");
 const fileUploader = require('../config/cloudinary.config');
+const session = require('express-session');
 
 // Show all recipes
 router.get("/all", async (req, res, next) => {
@@ -167,5 +168,31 @@ router.get('/:id/detail', async (req, res, next)=>{
  }
 });
 
+// Add Recipe Feedback
+router.post("/:id/feedback", isLoggedIn, async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const { rating, commentText } = req.body;
+
+    console.log(rating);
+    console.log(commentText);
+
+    const addRating = await Recipe.findByIdAndUpdate(id, { $push: { rating: rating } }, { new: true });
+
+    if (commentText) {
+      const newComment = await Comment.create({
+        author: req.session.currentUser,
+        text: commentText
+      });
+
+      const addComment = await Recipe.findByIdAndUpdate(id, {$push: { rating: rating }}, { new: true });
+    }
+
+    res.redirect(`/recipes/${id}/detail`);
+  }
+  catch (err) {
+    console.log(err);
+  }
+});
 
 module.exports = router;

@@ -20,7 +20,7 @@
           {{/if}}
         </div>
       </div>
-      <form class="feedback-form" action="" method="post">
+      <form class="feedback-form" action="/recipes/{{id}}/feedback" method="post">
         <h2>Rate and Comment this Recipe!</h2>
         <div class="rating-field">
           <label for="rating">Rating</label>
@@ -32,10 +32,11 @@
             <option value=1>1</option>
             <option value=0>0</option>
           </select>
+          <cite> (required)</cite>
         </div>
         <div class="write-comment">
-          <label for="feedback-comment">Leave a comment<cite>  (optional)</cite></label>
-          <textarea name="feedback-comment" placeholder="Your comment here"></textarea>
+          <label for="feedback-comment">Leave a comment<cite> (optional)</cite></label>
+          <textarea name="commentText" placeholder="Your comment here"></textarea>
         </div>
         <button type="submit">Submit</button>
       </form>

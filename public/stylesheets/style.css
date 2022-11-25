@@ -204,6 +204,7 @@ nav a {
 }
 
 .box {
+  text-align: center;
   display: flex;
   width: 300px;
   padding: 2vh;

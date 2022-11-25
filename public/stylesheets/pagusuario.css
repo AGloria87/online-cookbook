@@ -1,26 +1,13 @@
-h3{
-    color: aliceblue;
-}
-
-.head{
-    background-color: #502E3A;
-    display: flex;
-    justify-content: space-around;
-  
-}
-  
 .components{
     display: flex;
     align-items: center;
-    width: 800;
     justify-content: space-evenly;
     margin-right: 300px;
 }
-  
+
 .user{
     display: flex;
     align-items: center;
-    width: 200;
     justify-content: space-evenly;
 }
 
@@ -30,19 +17,11 @@ h3{
     justify-content: space-around;
     margin-top: 50px;
     font-size: 20px;
-
-
 }
+
 .optionsuser{
     color: #502E3A;
     display: flex;
     justify-content: space-around;
     margin-top: 50px;
-}
-.receta{
-    display: flex;
-    width: 500px;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 100px;
 }

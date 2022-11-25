@@ -96,19 +96,20 @@ nav a {
   margin-right: 300px;
 }
 
-.user{
+.user {
   display: flex;
   align-items: center;
-  width: 200;
   justify-content: space-evenly;
 }
 
 .welcome {
   width: 100%;
-  height: 40vh;
+  height: 100%;
   background-image: url("/images/splashBackground.jpg");
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: 50%;
+  background-attachment: fixed;
 }
 
 .welcome-overlay {
@@ -117,18 +118,18 @@ nav a {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   backdrop-filter: blur(5px);
+  background-color: rgba(196, 196, 196, 0.5);
 }
 
 .title{
   font-size: 100px;
 }
 
-.recipes{
+.home-recipes{
   display: flex;
   justify-content: space-around;
-  height: 350;
   align-items: center;
 }
 

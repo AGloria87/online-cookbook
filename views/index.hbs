@@ -1,12 +1,12 @@
 <div class="welcome">
   <div class="welcome-overlay">
-    <img src="/images/SplashTitle.png" alt="">
+    <img class="splash-logo" src="/images/SplashTitle.png" alt="background">
+    <h1>Latest Recipes</h1>
+    <div class="home-recipes">
+      {{#each latestRecipes}}
+        {{>recipecard}}
+      {{/each}}
+    </div>
   </div>
 </div>
-<div class="Recipes">
-  <h1 class="1"> a</h1>
-  <h2 class="2"> a</h2>
-  <h1 class="3"> a</h1>
-  <h1 class="4"> a</h1>
-  <h2 class="5"> a</h2>
-</div>
+<script src="/js/calculateRating.js"></script>

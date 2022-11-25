@@ -61,9 +61,8 @@ router.post("/create", isLoggedIn, fileUploader.single("Recipe-image"), async (r
       author,
       ingredients,
       directions,
-      photo : req.file.path 
+      photo : req.file.path
     });
-    console.log(newRecipe)
 
     // add new recipe to user's created recipes
     const userRecipes = await User.findByIdAndUpdate(author, {$push: {createdRecipes:newRecipe}}, {new: true});
@@ -175,9 +174,6 @@ router.post("/:id/feedback", isLoggedIn, async (req, res, next) => {
   try {
     const { id } = req.params;
     const { rating, commentText } = req.body;
-
-    console.log(rating);
-    console.log(commentText);
 
     const addRating = await Recipe.findByIdAndUpdate(id, { $push: { rating: rating } }, { new: true });
 

@@ -9,6 +9,8 @@ require("./db");
 // https://www.npmjs.com/package/express
 const express = require("express");
 
+const moment = require("moment");
+
 // Handles the handlebars
 // https://www.npmjs.com/package/hbs
 const hbs = require("hbs");
@@ -23,6 +25,11 @@ hbs.registerHelper("eq", function(a, b, options){
 // Evaluates if not equal
 hbs.registerHelper("neq", function(a, b, options){
   return a !== b ? options.fn(this) : options.inverse(this);
+});
+
+// Format date
+hbs.registerHelper("date", function(date){
+  return moment(date).format('MMM DD, YYYY');
 });
 
 const app = express();

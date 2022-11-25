@@ -1,17 +1,19 @@
-.components{
+.components {
     display: flex;
     align-items: center;
+    width: 800;
     justify-content: space-evenly;
     margin-right: 300px;
 }
 
-.user{
+.user {
     display: flex;
     align-items: center;
+    width: 200;
     justify-content: space-evenly;
 }
 
-.nameuser{
+.nameuser {
     color: #502E3A;
     display: flex;
     justify-content: space-around;

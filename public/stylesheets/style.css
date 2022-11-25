@@ -245,6 +245,10 @@ nav a {
   padding: 1vh;
 }
 
+.comment-date {
+  padding: 1vh;
+}
+
 .recipe-details-container {
   display: flex;
   width: fit-content;

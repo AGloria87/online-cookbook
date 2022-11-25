@@ -174,10 +174,12 @@ nav a {
   flex-direction: column;
   align-items: center;
   box-shadow: 0 0 5px 1px #502E3A;
+  margin: 50px;
 }
 
 .recipecontainer{
   display: flex;
+  flex-wrap: wrap;
 }
 
 .rating {
@@ -195,6 +197,7 @@ nav a {
 
 .commentscontain{
   box-shadow: 0 0 5px 1px #502E3A;
+  margin: 10px;
 }
 .commentscontain h2{
   font-size: 20px;
@@ -267,3 +270,4 @@ nav a {
 ul, ol {
   margin-left: 1em;
 }
+

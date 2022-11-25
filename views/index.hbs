@@ -1,11 +1,13 @@
 <div class="welcome">
   <div class="welcome-overlay">
     <img class="splash-logo" src="/images/SplashTitle.png" alt="background">
-    <h1>Latest Recipes</h1>
-    <div class="home-recipes">
-      {{#each latestRecipes}}
-        {{>recipecard}}
-      {{/each}}
+    <div class="home-recipes-container">
+      <h1>Latest Recipes</h1>
+      <div class="home-recipes">
+        {{#each latestRecipes}}
+          {{>recipecard}}
+        {{/each}}
+      </div>
     </div>
   </div>
 </div>

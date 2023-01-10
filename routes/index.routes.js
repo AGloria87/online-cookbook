@@ -25,13 +25,13 @@ router.get("/userProfile", isLoggedIn, async (req, res, next) => {
   try {
     const { username } = req.session.currentUser;
     const currUser = await User.findOne( {username: username} ).populate("createdRecipes")
-                                                               .populate({
-                                                                path: 'createdRecipes',
-                                                                populate: {
-                                                                  path: 'author',
-                                                                  model: 'User'
-                                                                  }
-                                                                })
+                                                                .populate({
+                                                                  path: 'createdRecipes',
+                                                                  populate: {
+                                                                    path: 'author',
+                                                                    model: 'User'
+                                                                    }
+                                                                  })
                                                                .populate("favoriteRecipes")
                                                                .populate({
                                                                 path: 'favoriteRecipes',

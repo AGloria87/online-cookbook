@@ -14,7 +14,7 @@
               <div>{{>comments}}</div>
             {{/each}}
           {{else}}
-            <div class="comments-empty">
+            <div class="empty-section">
               <strong>No Comments Yet!</strong>
             </div>
           {{/if}}
@@ -62,7 +62,7 @@
     </div>
     {{#eq session.currentUser.username author.username}}
         <form class="recipe-author-tools" action="/recipes/{{id}}/delete" method="post">
-          <a class="buttonbox" href="/recipes/{{id}}/edit">Edit Recipe</a>
+          <a class="button" href="/recipes/{{id}}/edit">Edit Recipe</a>
           <button type="submit">Delete Recipe</button>
         </form>
     {{/eq}}

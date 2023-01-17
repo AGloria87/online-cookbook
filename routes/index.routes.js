@@ -24,7 +24,6 @@ router.get("/", async (req, res, next) => {
 router.get("/:username", async (req, res, next) => {
   try {
     const { username } = req.params;
-    console.log(req.params)
     const userData = await User.findOne( {username: username} ).populate("createdRecipes")
                                                                 .populate({
                                                                   path: 'createdRecipes',
@@ -42,7 +41,7 @@ router.get("/:username", async (req, res, next) => {
                                                                   }
                                                                 })
 
-    res.render("user/userProfile", userData);
+    res.render("userProfile", userData);
   }
   catch (err) {
     console.log(err)

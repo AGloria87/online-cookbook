@@ -1,8 +1,7 @@
 <div class="box">
-    <h2>{{title}}</h2>
+    <a href="/recipes/{{_id}}/detail"><h2>{{title}}</h2></a>
     <img class="recipecard-img" src="{{photo}}" alt="photo">
 
-     <h4>Recipe by <a class="author-link" href="/{{author.username}}">{{author.username}}</a></h4>
+     <h4>Recipe by <a href="/{{author.username}}">{{author.username}}</a></h4>
      {{> starRating}}
-    <a class="buttonbox" href="/recipes/{{_id}}/detail">View More</a>
 </div>

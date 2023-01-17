@@ -37,10 +37,7 @@ const app = express();
 // ℹ️ This function is getting exported from the config folder. It runs most pieces of middleware
 require("./config")(app);
 
-const capitalize = require("./utils/capitalize");
-const projectName = "tast-E - Online Cookbook";
-
-app.locals.appTitle = `${projectName} created with IronLauncher`;
+app.locals.appTitle = "tast-E - Online Cookbook";
 
 // 👇 Start handling routes here
 const indexRoutes = require("./routes/index.routes");

@@ -138,20 +138,20 @@ nav a {
   margin-top: 10vh;
 }
 
-.title{
+.title {
   font-size: 100px;
 }
 
 .home-recipes-container {
   background-color: white;
-  padding: 5vh;
+  padding: 3vh;
   border-radius: 20px;
   box-shadow: 0 0 5px 1px #502E3A;
 }
 
 .home-recipes {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
   flex-wrap: wrap;
 }
@@ -206,7 +206,7 @@ nav a {
 .box {
   text-align: center;
   display: flex;
-  width: 300px;
+  width: 18vw;
   padding: 2vh;
   flex-direction: column;
   align-items: center;
@@ -215,17 +215,32 @@ nav a {
   border-radius: 10px;
 }
 
+.author-link {
+  text-decoration: none;
+  font-weight: bolder;
+  color: inherit;
+}
+
+.author-link:hover {
+  text-decoration: underline;
+}
+
 .recipecard-img {
-  width: 160px;
+  width: 100%;
   height: 160px;
   object-fit: cover;
 }
 
-.recipecontainer{
+.page-container {
+  display: flex;
+  margin: 3vh;
+  justify-content: center;
+}
+
+.recipes-container{
   display: flex;
   flex-wrap: wrap;
-  margin: 3vh auto;
-  width: 70%;
+  width: 80vw;
 }
 
 .rating {
@@ -336,3 +351,33 @@ ul, ol {
   margin-left: 1em;
 }
 
+.components {
+  display: flex;
+  align-items: center;
+  width: 800;
+  justify-content: space-evenly;
+  margin-right: 300px;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  width: 200;
+  justify-content: space-evenly;
+}
+
+.nameuser {
+  color: #502E3A;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 50px;
+  font-size: 20px;
+}
+
+.optionsuser{
+  color: #502E3A;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 50px;
+  flex-wrap: wrap;
+}

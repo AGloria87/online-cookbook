@@ -21,10 +21,11 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-router.get("/userProfile", isLoggedIn, async (req, res, next) => {
+router.get("/:username", async (req, res, next) => {
   try {
-    const { username } = req.session.currentUser;
-    const currUser = await User.findOne( {username: username} ).populate("createdRecipes")
+    const { username } = req.params;
+    console.log(req.params)
+    const userData = await User.findOne( {username: username} ).populate("createdRecipes")
                                                                 .populate({
                                                                   path: 'createdRecipes',
                                                                   populate: {
@@ -41,7 +42,7 @@ router.get("/userProfile", isLoggedIn, async (req, res, next) => {
                                                                   }
                                                                 })
 
-    res.render("user/userProfile", currUser);
+    res.render("user/userProfile", userData);
   }
   catch (err) {
     console.log(err)

@@ -1,7 +1,9 @@
 <h2>{{category}}</h2>
-<div class="recipecontainer">
-{{#each recipesList}}
-    {{>recipecard}}
-{{/each}}
+<div class="page-container">
+    <div class="recipes-container">
+        {{#each recipesList}}
+            {{>recipecard}}
+        {{/each}}
+    </div>
 </div>
 <script src="/js/calculateRating.js"></script>

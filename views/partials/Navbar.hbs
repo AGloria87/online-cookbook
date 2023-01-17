@@ -14,7 +14,7 @@
       <a href="/auth/login">Login</a>
     {{/unless}}
     {{#if session.currentUser}}
-      <a href="/userProfile">{{session.currentUser.username}}</a>
+      <a href="/{{session.currentUser.username}}">{{session.currentUser.username}}</a>
       <a href="/auth/logout">Logout</a>
     {{/if}}
   </div>

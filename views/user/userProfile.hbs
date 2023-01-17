@@ -1,10 +1,12 @@
 <div class = "nameuser">
-    <h1> Welcome back {{session.currentUser.username}}</h1>
+    <h1>{{username}}'s Profile</h1>
 </div>
 <section class="optionsuser">
     <div class="userRecipes">
-        <h1>My Recipes</h1>
-        <a class="buttonbox" href="/recipes/create">Create recipe</a>
+        <h1>Personal Recipes</h1>
+        {{#eq session.currentUser.username username}}
+            <a class="buttonbox" href="/recipes/create">Create Recipe</a>
+        {{/eq}}
         <div class="user-recipes-container">
             {{#each createdRecipes}}
                 {{>recipecard this}}

@@ -40,6 +40,7 @@ router.post("/create", isLoggedIn, fileUploader.single("Recipe-image"), async (r
   try {
     const { title, category } = req.body;
     const author = req.session.currentUser;
+    const fileAdded = req.hasOwnProperty("path");
     const ingredients = [];
     const directions = [];
 
@@ -59,13 +60,13 @@ router.post("/create", isLoggedIn, fileUploader.single("Recipe-image"), async (r
       author,
       ingredients,
       directions,
-      photo : req.file.path
+      ...(fileAdded && { photo: req.file.path })
     });
 
     // add new recipe to user's created recipes
-    const userRecipes = await User.findByIdAndUpdate(author, {$push: {createdRecipes:newRecipe}}, {new: true});
+    await User.findByIdAndUpdate(author, { $push: { createdRecipes:newRecipe }}, { new: true });
 
-    res.redirect("/userProfile");
+    res.redirect(`/${author.username}`);
   }
   catch (err) {
     console.log(err);
@@ -123,14 +124,14 @@ router.post("/:id/edit", isLoggedIn, async (req, res, next) => {
     }
 
     // Update recipe with new data
-    const updatedRecipe = await Recipe.findByIdAndUpdate(id, {
+    await Recipe.findByIdAndUpdate(id, {
       title: title,
       category: category,
       ingredients: ingredients,
       directions: directions
     }, {new: true});
 
-    res.redirect(`/recipes/${id}/detail`);
+    res.redirect(`/recipes/${id}`);
   }
   catch (err) {
     console.log(err);
@@ -141,34 +142,14 @@ router.post("/:id/edit", isLoggedIn, async (req, res, next) => {
 router.post("/:id/delete", isLoggedIn, async (req, res, next) => {
   try {
     const { id } = req.params;
-    const deletedRecipe = await Recipe.findByIdAndDelete(id);
-    res.redirect("/userProfile");
+    const author = req.session.currentUser;
+    await Recipe.findByIdAndDelete(id);
+    res.redirect(`/${author.username}`);
   }
   catch (err) {
     console.log(err);
   }
 })
-
-/*
-router.get('/:id/detail', async (req, res, next)=>{
-  try {
-  const { id } = req.params
-  const details = await Recipe.findById(id)
-                              .populate('comments')
-                              .populate({
-                                          path: 'comments',
-                                          populate: {
-                                            path: 'author',
-                                            model: 'User'
-                                          }
-                                        })
-                              .populate("author");
-  res.render("recipes/detail", details);
- }catch(err){
-  console.log(err)
- }
-});
-*/
 
 // Add Recipe Feedback
 router.post("/:id/feedback", isLoggedIn, async (req, res, next) => {
@@ -176,7 +157,7 @@ router.post("/:id/feedback", isLoggedIn, async (req, res, next) => {
     const { id } = req.params;
     const { rating, commentText } = req.body;
 
-    const addRating = await Recipe.findByIdAndUpdate(id, { $push: { rating: rating } }, { new: true });
+    await Recipe.findByIdAndUpdate(id, { $push: { rating: rating } }, { new: true });
 
     if (commentText) {
       const newComment = await Comment.create({
@@ -184,10 +165,10 @@ router.post("/:id/feedback", isLoggedIn, async (req, res, next) => {
         text: commentText
       });
 
-      const addComment = await Recipe.findByIdAndUpdate(id, {$push: { comments: newComment }}, { new: true });
+      await Recipe.findByIdAndUpdate(id, { $push: { comments: newComment } }, { new: true });
     }
 
-    res.redirect(`/recipes/${id}/detail`);
+    res.redirect(`/recipes/${id}`);
   }
   catch (err) {
     console.log(err);

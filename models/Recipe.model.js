@@ -27,7 +27,7 @@ const recipeSchema = new Schema(
     },
     photo: {
       type: String,
-      default: "./images/recipeDefault.png"
+      default: "https://res.cloudinary.com/dwhznw5ny/image/upload/v1674068428/online-cookbook/recipeDefault_j3nkbo.png"
     },
     rating: [Number],
     comments: [{type: Schema.Types.ObjectId, ref: 'Comment'}],

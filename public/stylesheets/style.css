@@ -7,15 +7,16 @@
 html {
   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   color: #502E3A;
+  text-align: center;
 }
 
-a {
+.body-link {
   text-decoration: none;
   font-weight: bolder;
   color: inherit;
 }
 
-a:hover {
+.body-link:hover {
   text-decoration: underline;
 }
 
@@ -61,7 +62,6 @@ textarea {
 
 .auth-form-container {
   font-size: 180%;
-  text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -214,7 +214,6 @@ nav a {
 }
 
 .box {
-  text-align: center;
   display: flex;
   width: 18vw;
   padding: 2vh;
@@ -260,6 +259,7 @@ nav a {
   border: #502E3A 1px solid;
   margin: 1vh 0;
   border-radius: 6px;
+  text-align: left;
 }
 
 .commentscontain h3 {
@@ -307,13 +307,8 @@ nav a {
   padding: 2vw;
 }
 
-.recipe-comments h2 {
-  text-align: center;
-}
-
 .empty-section {
   background-color: #DDD;
-  text-align: center;
   padding: 3vh 3vw;
   border-radius: 10px;
   width: 100%;
@@ -324,10 +319,6 @@ nav a {
   display: inherit;
   flex-direction: inherit;
   margin-top: 3vh;
-}
-
-.rating-field{
-  text-align: center;
 }
 
 .rating-field select{
@@ -351,6 +342,11 @@ nav a {
 
 ul, ol {
   margin-left: 1em;
+  text-align: left;
+}
+
+.page-title {
+  margin-top: 2vh;
 }
 
 .components {
@@ -371,11 +367,6 @@ ul, ol {
 .profile-content {
   width: 90vw;
   margin: auto;
-}
-
-.profile-title {
-  text-align: center;
-  margin-top: 2vh;
 }
 
 .profile-sections {

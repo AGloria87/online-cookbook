@@ -13,7 +13,7 @@ const recipeSchema = new Schema(
     },
     category: {
       type: String,
-      enum: ["Breakfast", "Lunch", "Dinner", "Dessert", "Other"]
+      enum: ["breakfast", "lunch", "dinner", "dessert", "other"]
     },
     ingredients: {
       type: [String],

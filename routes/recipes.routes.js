@@ -7,24 +7,22 @@ const User = require("../models/User.model");
 const Comment = require("../models/Comment.model");
 const fileUploader = require('../config/cloudinary.config');
 const session = require('express-session');
-
-// Show all recipes
-router.get("/all", async (req, res, next) => {
-  try {
-    const recipesList = await Recipe.find().populate("author");
-    res.render("recipes/all-recipes", { recipesList });
-  }
-  catch (err) {
-    console.log(err);
-  }
-});
+const capitalize = require('../utils/capitalize');
 
 // Show recipes by category
 router.get("/category/:category", async (req, res, next) => {
   try {
     const { category } = req.params;
-    const recipesList = await Recipe.find({ category: category }).populate("author");
-    res.render("recipes/all-recipes", { recipesList });
+    let recipesList;
+
+    if (category === "all") {
+      recipesList = await Recipe.find().populate("author", "username");
+    }
+    else {
+      recipesList = await Recipe.find({ category: category }).populate("author", "username");
+    }
+    const data = { recipesList, category: `${capitalize(category)}` };
+    res.render("recipes/all-recipes", data);
   }
   catch (err) {
     console.log(err);
@@ -74,23 +72,24 @@ router.post("/create", isLoggedIn, fileUploader.single("Recipe-image"), async (r
   }
 });
 
-router.get('/:id/detail', async (req, res, next)=>{
+router.get('/:id', async (req, res, next)=>{
   try {
-  const { id } = req.params
-  const details = await Recipe.findById(id)
-                              .populate('comments')
-                              .populate({
-                                          path: 'comments',
-                                          populate: {
-                                            path: 'author',
-                                            model: 'User'
-                                          }
-                                        })
-                              .populate("author");
-  res.render("recipes/detail", details,);
- }catch(err){
-  console.log(err)
- }
+    const { id } = req.params
+    const details = await Recipe.findById(id)
+                                .populate('comments')
+                                .populate({
+                                            path: 'comments',
+                                            populate: {
+                                              path: 'author',
+                                              model: 'User'
+                                            }
+                                          })
+                                .populate("author");
+    res.render("recipes/detail", details,);
+  }
+  catch(err){
+    console.log(err)
+  }
 });
 
 // Edit recipe routes
@@ -150,6 +149,7 @@ router.post("/:id/delete", isLoggedIn, async (req, res, next) => {
   }
 })
 
+/*
 router.get('/:id/detail', async (req, res, next)=>{
   try {
   const { id } = req.params
@@ -168,6 +168,7 @@ router.get('/:id/detail', async (req, res, next)=>{
   console.log(err)
  }
 });
+*/
 
 // Add Recipe Feedback
 router.post("/:id/feedback", isLoggedIn, async (req, res, next) => {

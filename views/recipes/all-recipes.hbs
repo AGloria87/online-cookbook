@@ -1,8 +1,8 @@
-<h2>{{category}}</h2>
+<h1 class="page-title">{{this.category}} Recipes</h1>
 <div class="page-container">
     <div class="recipes-container">
-        {{#each recipesList}}
-            {{>recipecard}}
+        {{#each this.recipesList}}
+            {{> recipecard}}
         {{/each}}
     </div>
 </div>

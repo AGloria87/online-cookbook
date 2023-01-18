@@ -45,7 +45,7 @@ const fakeNiceComments = [
 const fakeRecipes = [
   {
     title: 'Ham and Cheese Sandwich',
-    category: "Lunch",
+    category: "lunch",
     ingredients: [
       "2 slices of bread",
       "2 slices of ham",
@@ -64,7 +64,7 @@ const fakeRecipes = [
   },
   {
     title: "Omelette du Fromage",
-    category: "Breakfast",
+    category: "breakfast",
     ingredients: [
       "2 eggs",
       "1/2 onion",
@@ -85,7 +85,7 @@ const fakeRecipes = [
   },
   {
     title: "Strawberries and Cream",
-    category: "Dessert",
+    category: "dessert",
     ingredients: [
       "200g strawberries",
       "1/2 can condensed milk",
@@ -99,29 +99,57 @@ const fakeRecipes = [
     ],
     photo: "https://t2.rg.ltmcdn.com/es/posts/0/0/5/fresas_con_crema_24500_orig.jpg",
     rating: [3, 2, 5, 4, 1, 5]
+  },
+  {
+    title: "Aubergine Parmigiana",
+    category: "dinner",
+    ingredients: [
+      "2 aubergines",
+      "1/2 onion",
+      "4 cloves garlic",
+      "olive oil for frying",
+      "250g mozarella cheese",
+      "3 dried bay leaves",
+      "1/2 tbsp dried basil",
+      "1/2 tbsp dried oregano",
+      "1/2 L tomato puree",
+      "salt",
+      "pepper"
+    ],
+    directions: [
+      "Preheat oven to 200°C",
+      "Next, prepare tomato sauce - finely chop onions and garlic and fry in olive oil for a couple of minutes in a saucepan",
+      "Add tomato puree, bay leaves, basil, oregano, salt, and pepper to saucepan and let simmer for a few minutes",
+      "While the sauce cooks, cut aubergines and mozarella cheese into thin slices",
+      "Once the sauce is cooked and the aubergines and cheese are sliced, arrange them in alternating layers in a baking tray, starting with a thin layer of sauce at the bottom",
+      "Put the tray in the oven and bake for 30 minutes"
+    ],
+    photo: "https://media-cdn.greatbritishchefs.com/media/bbxnwzpc/img25136.whqc_768x512q90.jpg",
+    rating: [5, 5, 5, 5, 1, 5, 4, 3, 5, 4, 5]
   }
 ];
 
 async function initDB() {
   try {
-    const newUsers = await User.create(fakeUsers);
+    await User.create(fakeUsers);
     const newRecipes = await Recipe.create(fakeRecipes);
     const newNiceComments = await Comment.create(fakeNiceComments);
     const newTrollComments = await Comment.create(fakeTrollComments);
 
     // assign author user as author of recipes
     const recipeAuthor = await User.findOne({ username: fakeAuthor});
-    const recipesNewAuthor = await Recipe.updateMany( { newRecipes }, { author: recipeAuthor }, { new: true });
+    await User.findByIdAndUpdate(recipeAuthor._id, { $push : { createdRecipes: newRecipes } }, { new: true });
+    await Recipe.updateMany( { newRecipes }, { author: recipeAuthor }, { new: true });
 
     // asign author to nice comments and assign nice comments to recipes
     const niceAuthor = await User.findOne({ username: fakeFan });
-    const niceCommentsAuthor = await Comment.updateMany( { newNiceComments }, { author: niceAuthor }, {new: true});
-    const recipesNiceComments = await Recipe.updateMany( { newRecipes }, {$push: { comments: newNiceComments } }, { new: true });
+    await Comment.updateMany( { newNiceComments }, { author: niceAuthor }, { new: true });
+    await Recipe.updateMany( { newRecipes }, {$push: { comments: newNiceComments } }, { new: true });
 
     // asign author to troll comments and assign troll comments to recipes
     const trollAuthor = await User.findOne({ username: fakeTroll });
-    const trollCommentsAuthor = await Comment.updateMany( { newTrollComments }, { author: trollAuthor }, {new: true});
-    const recipesTrollComments = await Recipe.updateMany( { newRecipes }, { $push: { comments: newTrollComments } }, { new: true });
+    await Comment.updateMany( { newTrollComments }, { author: trollAuthor }, { new: true });
+    await Recipe.updateMany( { newRecipes }, { $push: { comments: newTrollComments } }, { new: true });
 
     mongoose.connection.close();
   }

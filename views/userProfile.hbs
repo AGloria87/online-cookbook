@@ -1,38 +1,38 @@
 <div class="profile-content">
-        <h1 class="profile-title">{{username}}'s Profile</h1>
-    <div class="profile-sections">
-        <div class="user-section">
-            <h2>Created Recipes</h2>
-            <div class="recipes-container">
-                {{#if createdRecipes}}
-                    {{#each createdRecipes}}
-                        {{>recipecard this}}
-                    {{/each}}
-                {{else}}
-                    <div class="empty-section">
-                        <strong>No Recipes Yet!</strong>
-                    </div>
-                {{/if}}
-                {{#eq session.currentUser.username username}}
-                    <a class="button" href="/recipes/create">Create Recipe</a>
-                {{/eq}}
-            </div>
-        </div>
-
-        <div class="user-section">
-            <h2>Favorite Recipes</h2>
-            <div class="recipes-container">
-                {{#if favoriteRecipes}}
-                    {{#each favoriteRecipes}}
-                        {{>recipecard this}}
-                    {{/each}}
-                {{else}}
-                    <div class="empty-section">
-                        <strong>No Recipes Yet!</strong>
-                    </div>
-                {{/if}}
-            </div>
-        </div>
+  <h1 class="page-title">{{username}}'s Profile</h1>
+  <div class="profile-sections">
+    <div class="user-section">
+      <h2>Created Recipes</h2>
+      <div class="recipes-container">
+        {{#if createdRecipes}}
+          {{#each createdRecipes}}
+            {{>recipecard this}}
+          {{/each}}
+        {{else}}
+          <div class="empty-section">
+            <strong>No Recipes Yet!</strong>
+          </div>
+        {{/if}}
+        {{#eq session.currentUser.username username}}
+          <a class="button" href="/recipes/create">Create Recipe</a>
+        {{/eq}}
+      </div>
     </div>
+
+    <div class="user-section">
+      <h2>Favorite Recipes</h2>
+      <div class="recipes-container">
+        {{#if favoriteRecipes}}
+          {{#each favoriteRecipes}}
+            {{>recipecard this}}
+          {{/each}}
+        {{else}}
+          <div class="empty-section">
+            <strong>No Recipes Yet!</strong>
+          </div>
+        {{/if}}
+      </div>
+    </div>
+  </div>
 </div>
 <script src="/js/calculateRating.js"></script>

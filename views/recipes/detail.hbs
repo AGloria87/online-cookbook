@@ -1,71 +1,23 @@
 <div class="recipe-details-container">
-  <section class="recipe-overview">
-    <div class="recipe-title-card">
+  <div class="recipe-details-col">
+    <div>
       <h1>{{title}}</h1>
       <img class="recipedetail-img" src="{{photo}}" alt="{{title}}">
-      {{> starRating}}
+      {{>starRating}}
+      <h3>Recipe by <a class="body-link" href="/{{author.username}}">{{author.username}}</a></h3>
     </div>
-    <section class="recipe-feedback">
-      <div class="recipe-comments">
-        <h2>Comments</h2>
-        <div class="comments-container">
-          {{#if comments}}
-            {{#each comments}}
-              <div>{{>comments}}</div>
-            {{/each}}
-          {{else}}
-            <div class="empty-section">
-              <strong>No Comments Yet!</strong>
-            </div>
-          {{/if}}
-        </div>
-      </div>
-      <form class="feedback-form" action="/recipes/{{id}}/feedback" method="post">
-        <h2>Rate and Comment this Recipe!</h2>
-        <div class="rating-field">
-          <label for="rating">Rating</label>
-          <select name="rating" id="feedback-rating">
-            <option value=5>5</option>
-            <option value=4>4</option>
-            <option value=3>3</option>
-            <option value=2>2</option>
-            <option value=1>1</option>
-            <option value=0>0</option>
-          </select>
-          <cite> (required)</cite>
-        </div>
-        <div class="write-comment">
-          <label for="feedback-comment">Leave a comment<cite> (optional)</cite></label>
-          <textarea name="commentText" placeholder="Your comment here"></textarea>
-        </div>
-        <button type="submit">Submit</button>
-      </form>
-
-    </section>
-  </section>
-  <section class="recipe-info">
-    <div>
-      <h1>Ingredients</h1>
-      <ul>
-        {{#each ingredients}}
-          <li>{{this}}</li>
-        {{/each}}
-      </ul>
-    </div>
-    <div class="directions">
-      <h1>Directions</h1>
-      <ol>
-        {{#each directions}}
-          <li>{{this}}</li>
-        {{/each}}
-      </ol>
-    </div>
+    {{>detailsInfo ingredients=ingredients directions=directions}}
     {{#eq session.currentUser.username author.username}}
-        <form class="recipe-author-tools" action="/recipes/{{id}}/delete" method="post">
-          <a class="button" href="/recipes/{{id}}/edit">Edit Recipe</a>
-          <button type="submit">Delete Recipe</button>
-        </form>
+      <form class="recipe-author-tools" action="/recipes/{{id}}/delete" method="post">
+        <a class="button" href="/recipes/{{id}}/edit">Edit Recipe</a>
+        <button type="submit">Delete Recipe</button>
+      </form>
     {{/eq}}
-  </section>
+  </div>
+  <div class="recipe-details-col">
+    {{>detailsFeedback id=id}}
+    <hr>
+    {{>detailsComments comments=comments}}
+  </div>
 </div>
 <script src="/js/calculateRating.js"></script>

@@ -1,0 +1,14 @@
+<div>
+  <h2>Comments</h2>
+  <div class="comments-container">
+    {{#if comments}}
+      {{#each comments}}
+        <div>{{>commentBox}}</div>
+      {{/each}}
+    {{else}}
+      <div class="empty-section">
+        <strong>No Comments Yet!</strong>
+      </div>
+    {{/if}}
+  </div>
+</div>

@@ -6,7 +6,7 @@
       <div class="recipes-container">
         {{#if createdRecipes}}
           {{#each createdRecipes}}
-            {{>recipecard this}}
+            {{>recipeCard this}}
           {{/each}}
         {{else}}
           <div class="empty-section">
@@ -24,7 +24,7 @@
       <div class="recipes-container">
         {{#if favoriteRecipes}}
           {{#each favoriteRecipes}}
-            {{>recipecard this}}
+            {{>recipeCard this}}
           {{/each}}
         {{else}}
           <div class="empty-section">

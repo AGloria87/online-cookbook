@@ -30,17 +30,13 @@ const fakeUsers = [
   },
 ]
 
-const fakeTrollComments = [
-  {
-    text: "This recipe is absolutely terrible."
-  }
-];
+const fakeTrollComment = {
+  text: "This recipe is absolutely terrible."
+};
 
-const fakeNiceComments = [
-  {
-    text: "Thanks for this recipe, it is amazing!"
-  }
-];
+const fakeNiceComment = {
+  text: "Thanks for this recipe, it is amazing!"
+};
 
 const fakeRecipes = [
   {
@@ -59,7 +55,7 @@ const fakeRecipes = [
       "On one slice of bread place the slices of ham and cheese alternating them.",
       "Place the remaining slice of bread on top of the one with the ham and cheese"
     ],
-    photo: "https://i.ytimg.com/vi/LW4yk2MWqOw/maxresdefault.jpg",
+    photo: "https://res.cloudinary.com/dwhznw5ny/image/upload/v1674088124/online-cookbook/default-ham-cheese-sandwich_fbfjpr.webp",
     rating: [5, 4, 4, 3]
   },
   {
@@ -80,7 +76,7 @@ const fakeRecipes = [
       "Fold the omelette in half and let it sit for 1 minute, then turn it onto the other side.",
       "Let it cook for 1 more minute, and then serve."
     ],
-    photo: "https://assets.epicurious.com/photos/54cad8d21f13bb9b2edf9930/master/pass/51262180_cheese-omelette_1x1.jpg",
+    photo: "https://res.cloudinary.com/dwhznw5ny/image/upload/v1674088125/online-cookbook/default-cheese-omelette_qkadtn.webp",
     rating: [5, 5, 5, 5, 1]
   },
   {
@@ -97,7 +93,7 @@ const fakeRecipes = [
       "Mix the condensed milk and cream in a bowl.",
       "Add the strawberries to the cream and mix them in."
     ],
-    photo: "https://t2.rg.ltmcdn.com/es/posts/0/0/5/fresas_con_crema_24500_orig.jpg",
+    photo: "https://res.cloudinary.com/dwhznw5ny/image/upload/v1674088123/online-cookbook/default-strawberries-cream_mdvegg.jpg",
     rating: [3, 2, 5, 4, 1, 5]
   },
   {
@@ -124,7 +120,7 @@ const fakeRecipes = [
       "Once the sauce is cooked and the aubergines and cheese are sliced, arrange them in alternating layers in a baking tray, starting with a thin layer of sauce at the bottom",
       "Put the tray in the oven and bake for 30 minutes"
     ],
-    photo: "https://media-cdn.greatbritishchefs.com/media/bbxnwzpc/img25136.whqc_768x512q90.jpg",
+    photo: "https://res.cloudinary.com/dwhznw5ny/image/upload/v1674088123/online-cookbook/default-aubergine-parmigiana_rwxai0.jpg",
     rating: [5, 5, 5, 5, 1, 5, 4, 3, 5, 4, 5]
   }
 ];
@@ -133,8 +129,8 @@ async function initDB() {
   try {
     await User.create(fakeUsers);
     const newRecipes = await Recipe.create(fakeRecipes);
-    const newNiceComments = await Comment.create(fakeNiceComments);
-    const newTrollComments = await Comment.create(fakeTrollComments);
+    const newNiceComment = await Comment.create(fakeNiceComment);
+    const newTrollComment = await Comment.create(fakeTrollComment);
 
     // assign author user as author of recipes
     const recipeAuthor = await User.findOne({ username: fakeAuthor});
@@ -143,13 +139,13 @@ async function initDB() {
 
     // asign author to nice comments and assign nice comments to recipes
     const niceAuthor = await User.findOne({ username: fakeFan });
-    await Comment.updateMany( { newNiceComments }, { author: niceAuthor }, { new: true });
-    await Recipe.updateMany( { newRecipes }, {$push: { comments: newNiceComments } }, { new: true });
+    await Comment.updateOne({ _id: newNiceComment._id }, { author: niceAuthor.id }, { new: true });
+    await Recipe.updateMany( { newRecipes }, { $push: { comments: newNiceComment } }, { new: true });
 
     // asign author to troll comments and assign troll comments to recipes
     const trollAuthor = await User.findOne({ username: fakeTroll });
-    await Comment.updateMany( { newTrollComments }, { author: trollAuthor }, { new: true });
-    await Recipe.updateMany( { newRecipes }, { $push: { comments: newTrollComments } }, { new: true });
+    await Comment.updateOne({ _id: newTrollComment._id }, { author: trollAuthor.id }, { new: true });
+    await Recipe.updateMany( { newRecipes }, { $push: { comments: newTrollComment } }, { new: true });
 
     mongoose.connection.close();
   }

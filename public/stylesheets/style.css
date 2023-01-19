@@ -10,6 +10,11 @@ html {
   text-align: center;
 }
 
+hr {
+  color: #502e3a;
+  margin: 1vh auto;
+}
+
 .body-link {
   text-decoration: none;
   font-weight: bolder;
@@ -40,7 +45,7 @@ select {
   background-repeat: no-repeat;
   background-position-x: 95%;
   background-position-y: 50%;
-  padding-right: 1.4em;
+  padding-right: 1.9em;
   appearance: none;
 }
 
@@ -83,7 +88,7 @@ textarea {
 nav {
   background-color: #502E3A;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   position: sticky;
   z-index: 1;
   left: 0;
@@ -245,7 +250,7 @@ nav a {
 .rating {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   margin: 0.5em;
 }
 
@@ -255,22 +260,22 @@ nav a {
   margin-left: 0.5em;
 }
 
-.commentscontain{
+.comment-box{
   border: #502E3A 1px solid;
-  margin: 1vh 0;
+  margin: 2vh 0;
   border-radius: 6px;
   text-align: left;
 }
 
-.commentscontain h3 {
+.comment-box h3 {
   background-color: #502E3A;
   color: white;
-  padding: 0.5vh;
+  padding: 0.5vh 0 0.5vh 1vw;
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
 }
 
-.commentscontain p {
+.comment-box p {
   padding: 1vh;
 }
 
@@ -280,31 +285,19 @@ nav a {
 
 .recipe-details-container {
   display: flex;
-  width: fit-content;
-  margin: 6vh auto;
+  width: 70vw;
+  margin: 3vh auto;
 }
 
 .recipedetail-img {
-  width: 300px;
+  width: 100%;
   height: 300px;
   object-fit: cover;
 }
 
-
-.recipe-details-container section {
+.recipe-details-col {
+  width: 50%;
   margin: 0 2vw;
-}
-
-.recipe-overview {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.recipe-feedback {
-  display: inherit;
-  flex-direction: inherit;
-  padding: 2vw;
 }
 
 .empty-section {
@@ -315,34 +308,27 @@ nav a {
   margin: 1vh;
 }
 
-.feedback-form {
-  display: inherit;
-  flex-direction: inherit;
-  margin-top: 3vh;
-}
-
-.rating-field select{
-  width: 30%;
-}
-
-.write-comment {
-  display: flex;
-  flex-direction: column;
-}
-
-.recipe-info div {
-  margin-bottom: 4vh;
+.write-comment textarea {
+  width: 100%;
+  height: 6em;
 }
 
 .recipe-author-tools {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
+  margin-top: 2vh;
+}
+
+.recipe-info {
+  text-align: left;
+  margin-top: 2vh;
 }
 
 ul, ol {
+  font-size: 110%;
   margin-left: 1em;
-  text-align: left;
+  line-height: 1.5em;
 }
 
 .page-title {

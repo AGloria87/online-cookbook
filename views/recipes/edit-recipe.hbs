@@ -1,56 +1,70 @@
-<div id="form" class="recipe-form-container">
-  <form action="/recipes/{{id}}/edit" method="POST">
-    <h2>Edit Recipe</h2>
-    <div class="recipe-form-inputs">
-      <section id="title-form">
+<form class="recipe-form" action="/recipes/{{id}}/edit" method="POST" enctype="multipart/form-data">
+  <h2>Edit Recipe</h2>
+  <div class="recipe-form-inputs">
+    <section id="title-form">
+      <label>Basic Information</label>
+      <div>
         <label>Title</label>
         <input type="text" name="title" placeholder="Recipe Title" value="{{this.title}}"/>
-        <div class="category-select">
-          <label for="category">Category</label>
-          <select name="category">
-            <option value="breakfast" {{#eq category "breakfast"}}selected{{/eq}}>Breakfast</option>
-            <option value="lunch" {{#eq category "lunch"}}selected{{/eq}}>Lunch</option>
-            <option value="dinner" {{#eq category "dinner"}}selected{{/eq}}>Dinner</option>
-            <option value="dessert" {{#eq category "dessert"}}selected{{/eq}}>Dessert</option>
-            <option value="other" {{#eq category "other"}}selected{{/eq}}>Other</option>
-          </select>
+      </div>
+      <div class="category-select">
+        <label for="category">Category</label>
+        <select name="category">
+          <option value="breakfast" {{#eq category "breakfast"}}selected{{/eq}}>Breakfast</option>
+          <option value="lunch" {{#eq category "lunch"}}selected{{/eq}}>Lunch</option>
+          <option value="dinner" {{#eq category "dinner"}}selected{{/eq}}>Dinner</option>
+          <option value="dessert" {{#eq category "dessert"}}selected{{/eq}}>Dessert</option>
+          <option value="other" {{#eq category "other"}}selected{{/eq}}>Other</option>
+        </select>
+      </div>
+      <div>
+        <label>Change Photo</label>
+        <div>
+          <label for="recipe-image">
+            <img
+              src={{photo}}
+              class="upload-preview"
+            />
+          </label>
+          <input type="file" id="recipe-image" name="recipe-image" accept=".jpg, .png"/>
+          <br>
+          <small><cite>Must be .jpg or .png and at least 600 × 300</cite></small>
         </div>
-      </section>
+      </div>
+    </section>
+    <section id="ingredients-form">
+      <label>Ingredients</label>
+      <div id="ingredients-inputs">
+        {{#each ingredients}}
+          <div class="ingr-field">
+            <input type="text" name="ingr{{@index}}" placeholder="Ingredient" value="{{this}}"/>
+            <img src="/images/ui/remove.svg" class="remove-field">
+          </div>
+        {{/each}}
 
-      <section id="ingredients-form">
-        <label>Ingredients</label>
-        <div id="ingredients-inputs">
-          {{#each ingredients}}
-            <div class="ingr-field">
-              <input type="text" name="ingr{{@index}}" placeholder="Ingredient" value="{{this}}"/>
-              <button type="button" class="remove-field">&times</button>
-            </div>
-          {{/each}}
+      </div>
+        <button type="button" class="ingr-add">+ Add Ingredient</button>
+    </section>
 
-        </div>
-          <button type="button" class="ingr-add">+ Add Ingredient</button>
-      </section>
+    <section id="directions-form">
+      <label>Directions</label>
+      <div id="directions-inputs">
 
-      <section id="directions-form">
-        <label>Directions</label>
-        <div id="directions-inputs">
+        {{#each directions}}
+          <div class="dir-field">
+            <input type="text" name="dir{{@index}}" placeholder="Direction" value="{{this}}"/>
+            <img src="/images/ui/remove.svg" class="remove-field">
+          </div>
+        {{/each}}
 
-          {{#each directions}}
-            <div class="dir-field">
-              <input type="text" name="dir{{@index}}" placeholder="Direction" value="{{this}}"/>
-              <button type="button" class="remove-field">&times</button>
-            </div>
-          {{/each}}
+      </div>
+      <button type="button" class="dir-add">+ Add Direction</button>
+    </section>
+  </div>
+  <button type="submit">Edit Recipe</button>
 
-        </div>
-        <button type="button" class="dir-add">+ Add Direction</button>
-      </section>
-    </div>
-    <button type="submit">Edit Recipe</button>
-
-    {{#if errorMessage}}
-      <p class="error">{{errorMessage}}</p>
-    {{/if}}
-  </form>
-</div>
+  {{#if errorMessage}}
+    <p class="error">{{errorMessage}}</p>
+  {{/if}}
+</form>
 <script src="/js/recipeForm.js"></script>

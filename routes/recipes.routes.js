@@ -107,10 +107,11 @@ router.get("/:id/edit", isLoggedIn, async (req, res, next) => {
 });
 
 // POST - Send information to update recipe
-router.post("/:id/edit", isLoggedIn, async (req, res, next) => {
+router.post("/:id/edit", isLoggedIn, fileUploader.single("recipe-image"), async (req, res, next) => {
   try {
     const { id } = req.params;
     const { title, category } = req.body;
+    const fileAdded = req.hasOwnProperty("file");
     const ingredients = [];
     const directions = [];
 
@@ -128,8 +129,10 @@ router.post("/:id/edit", isLoggedIn, async (req, res, next) => {
       title: title,
       category: category,
       ingredients: ingredients,
-      directions: directions
-    }, {new: true});
+      directions: directions,
+      ...(fileAdded && { photo: req.file.path })
+    }, { new: true }
+    );
 
     res.redirect(`/recipes/${id}`);
   }

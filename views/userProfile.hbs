@@ -13,10 +13,10 @@
             <strong>No Recipes Yet!</strong>
           </div>
         {{/if}}
-        {{#eq session.currentUser.username username}}
-          <a class="button" href="/recipes/create">Create Recipe</a>
-        {{/eq}}
       </div>
+      {{#eq session.currentUser.username username}}
+        <a class="button add-recipe" href="/recipes/create">+ Create Recipe</a>
+      {{/eq}}
     </div>
 
     <div class="user-section">

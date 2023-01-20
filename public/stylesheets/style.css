@@ -255,6 +255,10 @@ nav a {
   width: 80vw;
 }
 
+.add-recipe {
+  float: left;
+}
+
 .rating {
   margin: 0.5em;
 }

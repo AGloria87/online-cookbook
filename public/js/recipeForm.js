@@ -1,3 +1,7 @@
+// Image file upload preview
+const previewImg = document.querySelector(".upload-preview");
+const fileField = document.querySelector("#recipe-image");
+
 // Add Ingredient or Direction buttons
 const ingrAddBtn = document.querySelector("#ingredients-form .ingr-add");
 const dirAddBtn = document.querySelector("#directions-form .dir-add");
@@ -16,7 +20,7 @@ function addInputField(type, placeholder, count, inputs) {
 
   let fieldHTML = `
     <input type="text" name="${type}${count}" placeholder="${placeholder}"/>
-    <button type="button" class="remove-field">&times</button>
+    <img src="/images/ui/remove.svg" class="remove-field">
   `;
 
   fieldDiv.innerHTML += fieldHTML;
@@ -28,7 +32,13 @@ function addInputField(type, placeholder, count, inputs) {
 function removeField(event) {
   const target = event.currentTarget;
   const inputField = target.parentElement;
-  inputField.remove();
+  const inputsDiv = inputField.parentElement;
+  const allInputs = inputsDiv.querySelectorAll("input");
+
+  // Allow at least 1 field to remain
+  if (allInputs.length > 1) {
+    inputField.remove();
+  }
 }
 
 // Add event listener to all remove buttons for each input field
@@ -39,14 +49,22 @@ function fieldRemoveBtnsEL() {
   }
 }
 
-ingrAddBtn.addEventListener("click", event => {
+ingrAddBtn.addEventListener("click", e => {
   addInputField("ingr", "Ingredient", ingrsCount, ingrsInputs);
   ingrsCount++;
 });
 
-dirAddBtn.addEventListener("click", event => {
+dirAddBtn.addEventListener("click", e => {
   addInputField("dir", "Direction", dirsCount, dirsInputs);
   dirsCount++;
+});
+
+// Show a preview of the uploaded image
+fileField.addEventListener("change", e => {
+  const [file] = fileField.files;
+  if (file) {
+    previewImg.src = URL.createObjectURL(file);
+  }
 });
 
 window.addEventListener('load', () => {

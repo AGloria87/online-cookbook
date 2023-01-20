@@ -36,11 +36,11 @@ router.get("/create", isLoggedIn, (req, res, next) => {
 });
 
 // POST - Send information to create new recipe
-router.post("/create", isLoggedIn, fileUploader.single("Recipe-image"), async (req, res, next) => {
+router.post("/create", isLoggedIn, fileUploader.single("recipe-image"), async (req, res, next) => {
   try {
     const { title, category } = req.body;
     const author = req.session.currentUser;
-    const fileAdded = req.hasOwnProperty("path");
+    const fileAdded = req.hasOwnProperty("file");
     const ingredients = [];
     const directions = [];
 

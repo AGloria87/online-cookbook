@@ -1,7 +1,6 @@
 <div class="box">
-    <a class="body-link" href="/recipes/{{_id}}"><h2>{{title}}</h2></a>
-    <img class="recipecard-img" src="{{photo}}" alt="photo">
-
-     <h3>Recipe by <a class="body-link" href="/{{author.username}}">{{author.username}}</a></h3>
-     {{> starRating}}
+  <a class="body-link" href="/recipes/{{_id}}"><h2>{{title}}</h2></a>
+  <img class="recipe-card-img" src="{{photo}}" alt="photo">
+  <span>Recipe by <a class="body-link" href="/{{author.username}}">{{author.username}}</a></span>
+  {{>starRating rating=rating type="card-rate"}}
 </div>

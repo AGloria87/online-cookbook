@@ -1,78 +1,88 @@
-<div id="form" class="recipe-form-container">
-  <form action="/recipes/create" method="POST" enctype="multipart/form-data">
-    <h2>Create a New Recipe</h2>
-    <div class="recipe-form-inputs">
-      <section id="title-form">
+<form class="recipe-form" action="/recipes/create" method="POST" enctype="multipart/form-data">
+  <h2>Create a New Recipe</h2>
+  <div class="recipe-form-inputs">
+    <section id="title-form">
+      <label>Basic Information</label>
+      <div>
         <label>Title</label>
         <input type="text" name="title" placeholder="Recipe Title" value="Scrambled Eggs"/>
-        <div class="category-select">
-          <label for="category">Category</label>
-          <select name="category">
-            <option value="breakfast">Breakfast</option>
-            <option value="lunch">Lunch</option>
-            <option value="dinner">Dinner</option>
-            <option value="dessert">Dessert</option>
-            <option value="other">Other</option>
-          </select>
-        </div>
+      </div>
+      <div class="category-select">
+        <label for="category">Category</label>
+        <select name="category">
+          <option value="breakfast">Breakfast</option>
+          <option value="lunch">Lunch</option>
+          <option value="dinner">Dinner</option>
+          <option value="dessert">Dessert</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+      <div>
+        <label>Add a Photo (optional)</label>
         <div>
-        <label>Image
-        <input type="file" name="Recipe-image" class="recipeimage" accept=".jpg , .png"/>
-        </label>
+          <label for="recipe-image">
+            <img
+              src="https://res.cloudinary.com/dwhznw5ny/image/upload/v1674068428/online-cookbook/recipeDefault_j3nkbo.png"
+              class="upload-preview"
+            />
+          </label>
+          <input type="file" id="recipe-image" name="recipe-image" accept=".jpg, .png"/>
+          <br>
+          <small><cite>Must be .jpg or .png and at least 600 × 300</cite></small>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section id="ingredients-form">
-        <label>Ingredients</label>
-        <div id="ingredients-inputs">
+    <section id="ingredients-form">
+      <label>Ingredients</label>
+      <div id="ingredients-inputs">
 
-          <div class="ingr-field">
-            <input type="text" name="ingr0" placeholder="Ingredient" value="Eggs"/>
-            <button type="button" class="remove-field">&times</button>
-          </div>
-
-          <div class="ingr-field">
-            <input type="text" name="ingr1" placeholder="Ingredient" value="Ham"/>
-            <button type="button" class="remove-field">&times</button>
-          </div>
-
-          <div class="ingr-field">
-            <input type="text" name="ingr2" placeholder="Ingredient" value="Onion"/>
-            <button type="button" class="remove-field">&times</button>
-          </div>
-
+        <div class="ingr-field">
+          <input type="text" name="ingr0" placeholder="Ingredient" value="Eggs"/>
+          <img src="/images/ui/remove.svg" class="remove-field">
         </div>
-          <button type="button" class="ingr-add">+ Add Ingredient</button>
-      </section>
 
-      <section id="directions-form">
-        <label>Directions</label>
-        <div id="directions-inputs">
-
-          <div class="dir-field">
-            <input type="text" name="dir0" placeholder="Direction" value="Beat eggs"/>
-            <button type="button" class="remove-field">&times</button>
-          </div>
-
-          <div class="dir-field">
-            <input type="text" name="dir1" placeholder="Direction" value="Fry onion and ham"/>
-            <button type="button" class="remove-field">&times</button>
-          </div>
-
-          <div class="dir-field">
-            <input type="text" name="dir2" placeholder="Direction" value="Mix beaten eggs into onion and ham"/>
-            <button type="button" class="remove-field">&times</button>
-          </div>
-
+        <div class="ingr-field">
+          <input type="text" name="ingr1" placeholder="Ingredient" value="Ham"/>
+          <img src="/images/ui/remove.svg" class="remove-field">
         </div>
-        <button type="button" class="dir-add">+ Add Direction</button>
-      </section>
-    </div>
-    <button type="submit">Create Recipe</button>
 
-    {{#if errorMessage}}
-      <p class="error">{{errorMessage}}</p>
-    {{/if}}
-  </form>
-</div>
+        <div class="ingr-field">
+          <input type="text" name="ingr2" placeholder="Ingredient" value="Onion"/>
+          <img src="/images/ui/remove.svg" class="remove-field">
+        </div>
+
+      </div>
+        <button type="button" class="ingr-add">+ Add Ingredient</button>
+    </section>
+
+    <section id="directions-form">
+      <label>Directions</label>
+      <div id="directions-inputs">
+
+        <div class="dir-field">
+          <input type="text" name="dir0" placeholder="Direction" value="Beat eggs"/>
+          <img src="/images/ui/remove.svg" class="remove-field">
+        </div>
+
+        <div class="dir-field">
+          <input type="text" name="dir1" placeholder="Direction" value="Fry onion and ham"/>
+          <img src="/images/ui/remove.svg" class="remove-field">
+        </div>
+
+        <div class="dir-field">
+          <input type="text" name="dir2" placeholder="Direction" value="Mix beaten eggs into onion and ham"/>
+          <img src="/images/ui/remove.svg" class="remove-field">
+        </div>
+
+      </div>
+      <button type="button" class="dir-add">+ Add Direction</button>
+    </section>
+  </div>
+  <button type="submit">Create Recipe</button>
+
+  {{#if errorMessage}}
+    <p class="error">{{errorMessage}}</p>
+  {{/if}}
+</form>
 <script src="/js/recipeForm.js"></script>

@@ -2,9 +2,9 @@
   <div class="recipe-details-col">
     <div>
       <h1>{{title}}</h1>
-      <img class="recipedetail-img" src="{{photo}}" alt="{{title}}">
-      {{>starRating}}
-      <h3>Recipe by <a class="body-link" href="/{{author.username}}">{{author.username}}</a></h3>
+      <img class="recipe-details-img" src="{{photo}}" alt="{{title}}">
+      {{>starRating rating=rating type="detail-rate"}}
+      <p class="details-author">Recipe by <a class="body-link" href="/{{author.username}}">{{author.username}}</a></p>
     </div>
     {{>detailsInfo ingredients=ingredients directions=directions}}
     {{#eq session.currentUser.username author.username}}

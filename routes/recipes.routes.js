@@ -76,17 +76,9 @@ router.post("/create", isLoggedIn, fileUploader.single("recipe-image"), async (r
 router.get('/:id', async (req, res, next)=>{
   try {
     const { id } = req.params
-    const details = await Recipe.findById(id)
-                                .populate('comments')
-                                .populate({
-                                            path: 'comments',
-                                            populate: {
-                                              path: 'author',
-                                              model: 'User'
-                                            }
-                                          })
-                                .populate("author");
-    res.render("recipes/detail", details,);
+    const details = await Recipe.findById(id).populate("author");
+    const comments = await Comment.find({ recipe: id }).populate('author', 'username');
+    res.render("recipes/detail", { details, comments });
   }
   catch(err){
     console.log(err)

@@ -6,6 +6,9 @@ const commentSchema = new Schema(
     author: {
       type: Schema.Types.ObjectId, ref: 'User',
     },
+    recipe: {
+      type: Schema.Types.ObjectId, ref: 'Recipe',
+    },
     text: {
       type: String,
       required: true,

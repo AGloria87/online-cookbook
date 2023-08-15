@@ -1,0 +1,162 @@
+[
+    {
+        "title": "Ham and Cheese Sandwich",
+        "category": "lunch",
+        "ingredients": [
+            "2 slices of bread",
+            "2 slices of ham",
+            "2 slices of cheese",
+            "mayonnaise",
+            "mustard"
+        ],
+        "directions": [
+            "Spread mayonnaise on one slice of bread and mustard on the other.",
+            "Place the slices of bread on a dish with condiment facing up.",
+            "On one slice of bread place the slices of ham and cheese alternating them.",
+            "Place the remaining slice of bread on top of the one with the ham and cheese"
+        ],
+        "photo": "https://res.cloudinary.com/dwhznw5ny/image/upload/v1674088124/online-cookbook/default-ham-cheese-sandwich_fbfjpr.webp",
+        "rating": [5, 4, 4, 3]
+    },
+    {
+        "title": "Omelette du Fromage",
+        "category": "breakfast",
+        "ingredients": [
+            "2 eggs",
+            "1/2 onion",
+            "1/2 cup grated cheese",
+            "salt",
+            "pepper"
+        ],
+        "directions": [
+            "Scramble the eggs in a bowl.",
+            "Fry the onion in a frying pan for about 5 minutes, then set aside.",
+            "In the same frying pan, pour the egg and let cook for about 1-2 minutes",
+            "Add the cooked onion and the grated cheese onto the egg and let cook for another 2 minutes",
+            "Fold the omelette in half and let it sit for 1 minute, then turn it onto the other side.",
+            "Let it cook for 1 more minute, and then serve."
+        ],
+        "photo": "https://res.cloudinary.com/dwhznw5ny/image/upload/v1674088125/online-cookbook/default-cheese-omelette_qkadtn.webp",
+        "rating": [5, 5, 5, 5, 1]
+    },
+    {
+        "title": "Strawberries and Cream",
+        "category": "dessert",
+        "ingredients": [
+            "200g strawberries",
+            "1/2 can condensed milk",
+            "1/2 bottle light cream",
+            "Sprinkle of sugar"
+        ],
+        "directions": [
+            "Cut the strawberries in thin slices and sprinkle some sugar on them",
+            "Mix the condensed milk and cream in a bowl.",
+            "Add the strawberries to the cream and mix them in."
+        ],
+        "photo": "https://res.cloudinary.com/dwhznw5ny/image/upload/v1674088123/online-cookbook/default-strawberries-cream_mdvegg.jpg",
+        "rating": [3, 2, 5, 4, 1, 5]
+    },
+    {
+        "title": "Aubergine Parmigiana",
+        "category": "dinner",
+        "ingredients": [
+            "2 aubergines",
+            "1/2 onion",
+            "4 cloves garlic",
+            "olive oil for frying",
+            "250g mozarella cheese",
+            "3 dried bay leaves",
+            "1/2 tbsp dried basil",
+            "1/2 tbsp dried oregano",
+            "1/2 L tomato puree",
+            "Salt",
+            "Pepper"
+        ],
+        "directions": [
+            "Preheat oven to 200°C",
+            "Next, prepare tomato sauce - finely chop onions and garlic and fry in olive oil for a couple of minutes in a saucepan",
+            "Add tomato puree, bay leaves, basil, oregano, salt, and pepper to saucepan and let simmer for a few minutes",
+            "While the sauce cooks, cut aubergines and mozarella cheese into thin slices",
+            "Once the sauce is cooked and the aubergines and cheese are sliced, arrange them in alternating layers in a baking tray, starting with a thin layer of sauce at the bottom",
+            "Put the tray in the oven and bake for 30 minutes"
+        ],
+        "photo": "https://res.cloudinary.com/dwhznw5ny/image/upload/v1674088123/online-cookbook/default-aubergine-parmigiana_rwxai0.jpg",
+        "rating": [5, 5, 5, 5, 1, 5, 4, 3, 5, 4, 5]
+    },
+    {
+        "title": "Machaca con Huevo",
+        "category": "breakfast",
+        "ingredients": [
+            "10 eggs",
+            "105g dried beef",
+            "1/2 onion",
+            "3 cloves garlic",
+            "3 ripe globe tomatoes",
+            "Cumin",
+            "Salt",
+            "Pepper",
+            "Oil for frying"
+        ],
+        "directions": [
+            "Blend tomatoes and garlic in blender.",
+            "Scramble eggs in a bowl.",
+            "Heat oil in a frying pan at medium heat and fry dry beef for a couple of minutes",
+            "Dice onion and add it to the frying pan, fry until onion is fully cooked",
+            "Add blended tomatoes and garlic, season with cumin, salt, and pepper. Stir everything and simmer until the tomatoes are cooked.",
+            "Add scrambled eggs to sauce, stir together and cook until eggs are set."
+        ],
+        "photo": "https://res.cloudinary.com/dwhznw5ny/image/upload/v1691619136/online-cookbook/default-machaca-con-huevo_g2qkr5.png",
+        "rating": [5, 5, 1, 4, 3, 4, 5, 2]
+    },
+    {
+        "title": "Banana Bread",
+        "category": "dessert",
+        "ingredients": [
+            "1 3/4 cups all-purpose flour",
+            "2 1/4 tsp double-acting baking powder",
+            "1/2 tsp salt",
+            "1/3 cup shortening",
+            "2/3 cup sugar",
+            "3/4 tsp grated lemon rind",
+            "2 eggs",
+            "1 1/4 cub ripe banana pulp",
+            "1/2 cup broken nuts",
+            "1/4 cup chopped dried apricots"
+        ],
+        "directions": [
+            "In one bowl, sift together flour, baking powder, and salt.",
+            "In another bowl, blend shortening, sugar, and lemon rind, until creamy.",
+            "Beat eggs and banana pulp into the shortening mix.",
+            "Add the dry ingredients to the shortening mixture in 3 part. Beat the batter after each addition, until smooth.",
+            "Fold in the nuts and the apricots.",
+            "Place batter in a greased bread pan and bake for 1 hour or until done.",
+            "Let it cool before slicing."
+        ],
+        "photo": "https://res.cloudinary.com/dwhznw5ny/image/upload/v1691695068/online-cookbook/test-banana-bread_bus9yg.jpg",
+        "rating": [5, 1, 4, 3, 4, 5, 2, 3, 4, 4, 1, 2, 5, 4]
+    },
+    {
+        "title": "Chocolate Chip Cookies",
+        "category": "dessert",
+        "ingredients": [
+            "1/2 cup butter",
+            "1/2 cup brown sugar",
+            "1/2 cup white sugar",
+            "1 egg",
+            "1/2 tsp vanilla",
+            "1 cup + 2 Tbsp all-purpose flour",
+            "1/2 tsp salt",
+            "1/2 tsp baking powder",
+            "1/2 cup semisweet chocolate chips"
+        ],
+        "directions": [
+            "Cream the butter, then add both kinds of sugar gradually and beat until creamy.",
+            "Beat in the egg.",
+            "Sift and sitr in the flour, salt, and baking soda.",
+            "Stir in the chocolate chips.",
+            "Drop the batter from a teaspoon onto a greased cookie sheet. Bake for 10 minutes."
+        ],
+        "photo": "https://res.cloudinary.com/dwhznw5ny/image/upload/v1692121851/online-cookbook/test-chocolate-chip-cookies_hra2zn.jpg",
+        "rating": [5, 4, 4, 4, 4, 5, 4, 4, 4, 4, 4, 3, 5, 4, 5, 5, 5, 5, 5, 5]
+    }
+]

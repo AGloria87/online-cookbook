@@ -1,12 +1,12 @@
 <div class="recipe-details-container">
   <div class="recipe-details-col">
     <div>
-      <h1>{{title}}</h1>
-      <img class="recipe-details-img" src="{{photo}}" alt="{{title}}">
-      {{>starRating rating=rating type="detail-rate"}}
-      <p class="details-author">Recipe by <a class="body-link" href="/{{author.username}}">{{author.username}}</a></p>
+      <h1>{{details.title}}</h1>
+      <img class="recipe-details-img" src="{{details.photo}}" alt="{{details.title}}">
+      {{>starRating rating=details.rating type="detail-rate"}}
+      <p class="details-author">Recipe by <a class="body-link" href="/{{details.author.username}}">{{author.username}}</a></p>
     </div>
-    {{>detailsInfo ingredients=ingredients directions=directions}}
+    {{>detailsInfo ingredients=details.ingredients directions=details.directions}}
     {{#eq session.currentUser.username author.username}}
       <form class="recipe-author-tools" action="/recipes/{{id}}/delete" method="post">
         <a class="button" href="/recipes/{{id}}/edit">Edit Recipe</a>

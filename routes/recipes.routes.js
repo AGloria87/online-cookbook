@@ -157,6 +157,7 @@ router.post("/:id/feedback", isLoggedIn, async (req, res, next) => {
     if (commentText) {
       const newComment = await Comment.create({
         author: req.session.currentUser,
+        recipe: id,
         text: commentText
       });
 

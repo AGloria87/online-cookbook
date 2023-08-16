@@ -1,9 +1,13 @@
-<h1 class="page-title">{{this.category}} Recipes</h1>
+<h1 class="page-title">{{category}} Recipes</h1>
 <div class="page-container">
-    <div class="recipes-container">
-        {{#each this.recipesList}}
-            {{>recipeCard}}
-        {{/each}}
-    </div>
+  <div class="recipes-container">
+    {{#if recipesList.length}}
+      {{#each recipesList}}
+        {{>recipeCard}}
+      {{/each}}
+    {{else}}
+      {{>emptySection item="Recipes" }}
+    {{/if}}
+  </div>
 </div>
 <script src="/js/calculateRating.js"></script>

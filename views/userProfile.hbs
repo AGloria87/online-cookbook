@@ -9,9 +9,7 @@
             {{>recipeCard this}}
           {{/each}}
         {{else}}
-          <div class="empty-section">
-            <strong>No Recipes Yet!</strong>
-          </div>
+          {{>emptySection item="Created Recipes"}}
         {{/if}}
       </div>
       {{#eq session.currentUser.username username}}
@@ -27,9 +25,7 @@
             {{>recipeCard this}}
           {{/each}}
         {{else}}
-          <div class="empty-section">
-            <strong>No Recipes Yet!</strong>
-          </div>
+        {{>emptySection item="Favorite Recipes"}}
         {{/if}}
       </div>
     </div>

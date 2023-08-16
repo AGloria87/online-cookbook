@@ -6,9 +6,7 @@
         <div>{{>commentBox}}</div>
       {{/each}}
     {{else}}
-      <div class="empty-section">
-        <strong>No Comments Yet!</strong>
-      </div>
+      {{>emptySection item="Comments"}}
     {{/if}}
   </div>
 </div>

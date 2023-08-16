@@ -22,7 +22,7 @@ hr {
 }
 
 .body-link:hover {
-  text-decoration: underline;
+  color: hsl(339, 50%, 75%);
 }
 
 input[type=text],

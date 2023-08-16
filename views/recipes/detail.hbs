@@ -4,7 +4,7 @@
       <h1>{{details.title}}</h1>
       <img class="recipe-details-img" src="{{details.photo}}" alt="{{details.title}}">
       {{>starRating rating=details.rating type="detail-rate"}}
-      <p class="details-author">Recipe by <a class="body-link" href="/{{details.author.username}}">{{author.username}}</a></p>
+      <p class="details-author">Recipe by <a class="body-link" href="/{{details.author.username}}">{{details.author.username}}</a></p>
     </div>
     {{>detailsInfo ingredients=details.ingredients directions=details.directions}}
     {{#eq session.currentUser.username author.username}}

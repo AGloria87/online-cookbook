@@ -1,12 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const isLoggedOut = require("../middleware/isLoggedOut");
 const isLoggedIn = require("../middleware/isLoggedIn");
 const Recipe = require("../models/Recipe.model");
 const User = require("../models/User.model");
 const Comment = require("../models/Comment.model");
 const fileUploader = require('../config/cloudinary.config');
-const session = require('express-session');
 const capitalize = require('../utils/capitalize');
 
 // Show recipes by category
@@ -73,11 +71,11 @@ router.post("/create", isLoggedIn, fileUploader.single("recipe-image"), async (r
   }
 });
 
-router.get('/:id', async (req, res, next)=>{
+router.get('/:recipeId', async (req, res, next)=>{
   try {
-    const { id } = req.params
-    const details = await Recipe.findById(id).populate("author");
-    const comments = await Comment.find({ recipe: id }).populate('author', 'username');
+    const { recipeId } = req.params
+    const details = await Recipe.findById(recipeId).populate("author");
+    const comments = await Comment.find({ recipe: recipeId }).populate('author', 'username');
     res.render("recipes/detail", { details, comments });
   }
   catch(err){
@@ -87,10 +85,10 @@ router.get('/:id', async (req, res, next)=>{
 
 // Edit recipe routes
 //GET - show the form with previous recipe info
-router.get("/:id/edit", isLoggedIn, async (req, res, next) => {
+router.get("/:recipeId/edit", isLoggedIn, async (req, res, next) => {
   try {
-    const { id } = req.params;
-    const recipe = await Recipe.findById(id)
+    const { recipeId } = req.params;
+    const recipe = await Recipe.findById(recipeId)
     res.render("recipes/edit-recipe", recipe);
   }
   catch (err) {
@@ -99,9 +97,9 @@ router.get("/:id/edit", isLoggedIn, async (req, res, next) => {
 });
 
 // POST - Send information to update recipe
-router.post("/:id/edit", isLoggedIn, fileUploader.single("recipe-image"), async (req, res, next) => {
+router.post("/:recipeId/edit", isLoggedIn, fileUploader.single("recipe-image"), async (req, res, next) => {
   try {
-    const { id } = req.params;
+    const { recipeId } = req.params;
     const { title, category } = req.body;
     const fileAdded = req.hasOwnProperty("file");
     const ingredients = [];
@@ -117,7 +115,7 @@ router.post("/:id/edit", isLoggedIn, fileUploader.single("recipe-image"), async 
     }
 
     // Update recipe with new data
-    await Recipe.findByIdAndUpdate(id, {
+    await Recipe.findByIdAndUpdate(recipeId, {
       title: title,
       category: category,
       ingredients: ingredients,
@@ -126,7 +124,7 @@ router.post("/:id/edit", isLoggedIn, fileUploader.single("recipe-image"), async 
     }, { new: true }
     );
 
-    res.redirect(`/recipes/${id}`);
+    res.redirect(`/recipes/${recipeId}`);
   }
   catch (err) {
     console.log(err);
@@ -134,11 +132,11 @@ router.post("/:id/edit", isLoggedIn, fileUploader.single("recipe-image"), async 
 });
 
 // Delete recipe
-router.post("/:id/delete", isLoggedIn, async (req, res, next) => {
+router.post("/:recipeId/delete", isLoggedIn, async (req, res, next) => {
   try {
-    const { id } = req.params;
+    const { recipeId } = req.params;
     const author = req.session.currentUser;
-    await Recipe.findByIdAndDelete(id);
+    await Recipe.findByIdAndDelete(recipeId);
     res.redirect(`/${author.username}`);
   }
   catch (err) {
@@ -147,24 +145,24 @@ router.post("/:id/delete", isLoggedIn, async (req, res, next) => {
 })
 
 // Add Recipe Feedback
-router.post("/:id/feedback", isLoggedIn, async (req, res, next) => {
+router.post("/:recipeId/feedback", isLoggedIn, async (req, res, next) => {
   try {
-    const { id } = req.params;
+    const { recipeId } = req.params;
     const { rating, commentText } = req.body;
 
-    await Recipe.findByIdAndUpdate(id, { $push: { rating: rating } }, { new: true });
+    await Recipe.findByIdAndUpdate(recipeId, { $push: { rating: rating } }, { new: true });
 
     if (commentText) {
       const newComment = await Comment.create({
         author: req.session.currentUser,
-        recipe: id,
+        recipe: recipeId,
         text: commentText
       });
 
-      await Recipe.findByIdAndUpdate(id, { $push: { comments: newComment } }, { new: true });
+      await Recipe.findByIdAndUpdate(recipeId, { $push: { comments: newComment } }, { new: true });
     }
 
-    res.redirect(`/recipes/${id}`);
+    res.redirect(`/recipes/${recipeId}`);
   }
   catch (err) {
     console.log(err);

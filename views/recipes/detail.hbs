@@ -7,9 +7,9 @@
       <p class="details-author">Recipe by <a class="body-link" href="/{{details.author.username}}">{{details.author.username}}</a></p>
     </div>
     {{>detailsInfo ingredients=details.ingredients directions=details.directions}}
-    {{#eq session.currentUser.username author.username}}
-      <form class="recipe-author-tools" action="/recipes/{{id}}/delete" method="post">
-        <a class="button" href="/recipes/{{id}}/edit">Edit Recipe</a>
+    {{#eq session.currentUser.username details.author.username}}
+      <form class="recipe-author-tools" action="/recipes/{{details._id}}/delete" method="post">
+        <a class="button" href="/recipes/{{details._id}}/edit">Edit Recipe</a>
         <button type="submit">Delete Recipe</button>
       </form>
     {{/eq}}

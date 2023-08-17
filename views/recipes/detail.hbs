@@ -7,6 +7,7 @@
       <p class="details-author">Recipe by <a class="body-link" href="/{{details.author.username}}">{{details.author.username}}</a></p>
     </div>
     {{>detailsInfo ingredients=details.ingredients directions=details.directions}}
+    {{!-- Show Edit and Delete buttons only if authenticated and viewing own recipes --}}
     {{#eq session.currentUser.username details.author.username}}
       <form class="recipe-author-tools" action="/recipes/{{details._id}}/delete" method="post">
         <a class="button" href="/recipes/{{details._id}}/edit">Edit Recipe</a>
@@ -15,8 +16,13 @@
     {{/eq}}
   </div>
   <div class="recipe-details-col">
-    {{>detailsFeedback id=details.id}}
-    <hr>
+    {{!-- Show rating tools only if authenticated and not viewing own recipes --}}
+    {{#if session.currentUser}}
+      {{#neq session.currentUser.username details.author.username}}
+        {{>detailsFeedback id=details.id}}
+        <hr>
+      {{/neq}}
+    {{/if}}
     {{>detailsComments comments=comments}}
   </div>
 </div>

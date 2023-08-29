@@ -11,7 +11,7 @@ router.get("/", async (req, res, next) => {
   try {
     const latestRecipes = await Recipe.find()
                                       .sort({"createdAt": -1})
-                                      .limit(5)
+                                      .limit(4)
                                       .populate("author")
 
     res.render("index", { latestRecipes });

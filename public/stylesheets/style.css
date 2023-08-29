@@ -164,18 +164,11 @@ textarea {
   font-size: 100px;
 }
 
-.home-recipes-container {
+.latest-container {
   background-color: white;
-  padding: 3vh;
+  padding: 3vh 6vh;
   border-radius: 20px;
   box-shadow: 0 0 5px 1px #502E3A;
-}
-
-.home-recipes {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
 }
 
 .recipe-form {
@@ -232,7 +225,6 @@ textarea {
   width: 20em;
   padding: 1em;
   box-shadow: 0 0 3px 0.01em #502E3A;
-  margin: 0.5vw;
   border-radius: 10px;
 }
 
@@ -250,9 +242,11 @@ textarea {
 }
 
 .recipes-container{
-  display: flex;
-  flex-wrap: wrap;
-  width: 80vw;
+  display: inline-grid;
+  grid-template-columns: repeat(4, 20em);
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+  width: min-content;
 }
 
 .add-recipe {
@@ -321,6 +315,7 @@ textarea {
 }
 
 .empty-section {
+  font-size: 1.5rem;
   background-color: #DDD;
   padding: 3vh 3vw;
   border-radius: 10px;
@@ -384,9 +379,4 @@ ul, ol {
 
 .user-section {
   margin: 1vw;
-}
-
-.recipes-container {
-  display: flex;
-  flex-wrap: wrap;
 }

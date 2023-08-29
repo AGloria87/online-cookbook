@@ -4,9 +4,9 @@ const Recipe = require('../models/Recipe.model');
 const User = require('../models/User.model');
 const Comment = require('../models/Comment.model');
 
-const recipesData = require('./data.recipes.json');
-const commentsData = require('./data.comments.json');
-const usersData = require('./data.users.json');
+const recipesData = require('../seedData/data.recipes.json');
+const commentsData = require('../seedData/data.comments.json');
+const usersData = require('../seedData/data.users.json');
 
 // ℹ️ Connects to the database
 require("../db");

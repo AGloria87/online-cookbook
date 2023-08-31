@@ -380,3 +380,11 @@ ul, ol {
 .user-section {
   margin: 1vw;
 }
+
+.error, .error p {
+  margin: 2vw;
+}
+
+.error button, .error p {
+  font-size: 2em;
+}

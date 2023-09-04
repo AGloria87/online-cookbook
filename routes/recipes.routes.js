@@ -23,7 +23,7 @@ router.get("/category/:category", async (req, res, next) => {
     res.render("recipes/all-recipes", data);
   }
   catch (err) {
-    console.log(err);
+    next(err);
   }
 });
 
@@ -79,7 +79,7 @@ router.get('/:recipeId', async (req, res, next)=>{
     res.render("recipes/detail", { details, comments });
   }
   catch(err){
-    console.log(err)
+    next(err)
   }
 });
 

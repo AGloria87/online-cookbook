@@ -1,6 +1,8 @@
 /*
 base color: #502E3A;
 highlight color: #df9fb6;
+error color: #B53B1F;
+gray: #DDD;
 */
 * {
   padding: 0;
@@ -381,10 +383,19 @@ ul, ol {
   margin: 1vw;
 }
 
-.error, .error p {
+.error-page, .error-page p {
   margin: 2vw;
 }
 
-.error button, .error p {
+.error-page button, .error-page p {
   font-size: 2em;
+}
+
+.error {
+  color: #B53B1F;
+  background-color: #DDD;
+  width: fit-content;
+  border-radius: 10px;
+  margin: 1vw auto;
+  padding: 1vw;
 }

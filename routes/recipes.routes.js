@@ -42,10 +42,32 @@ router.post("/create", isLoggedIn, fileUploader.single("recipe-image"), async (r
     const ingredients = [];
     const directions = [];
 
+    if (!title) {
+      res.status(400).render("recipes/create-recipe", {
+        errorMessage: "Please add a title."
+      });
+      return;
+    }
+
+    if (!category) {
+      res.status(400).render("recipes/create-recipe", {
+        errorMessage: "Please choose a category."
+      });
+      return;
+    }
+
     for (key in req.body) {
+      if (!req.body[key]) {
+        res.status(400).render("recipes/create-recipe", {
+          errorMessage: "Please fill or delete empty ingredient or direction fields."
+        });
+        return;
+      }
+
       if (key.startsWith("ingr")) {
         ingredients.push(req.body[key]);
       }
+
       if (key.startsWith("dir")) {
         directions.push(req.body[key]);
       }
@@ -67,7 +89,7 @@ router.post("/create", isLoggedIn, fileUploader.single("recipe-image"), async (r
     res.redirect(`/${author.username}`);
   }
   catch (err) {
-    console.log(err);
+    next(err);
   }
 });
 

@@ -223,6 +223,10 @@ textarea {
   cursor: pointer;
 }
 
+.disabled {
+  filter: saturate(0) brightness(315%);
+}
+
 .recipe-card {
   width: 20em;
   padding: 1em;

@@ -18,6 +18,11 @@ function addInputField(type, placeholder, count, inputs) {
   let fieldDiv = document.createElement("div")
   fieldDiv.classList.add(`${type}-field`)
 
+  if (inputs.children.length === 1) {
+    const onlyBtn = inputs.querySelector(".remove-field");
+    onlyBtn.classList.remove("disabled");
+  }
+
   let fieldHTML = `
     <input type="text" name="${type}${count}" placeholder="${placeholder}"/>
     <img src="/images/ui/remove.svg" class="remove-field">
@@ -38,6 +43,12 @@ function removeField(event) {
   // Allow at least 1 field to remain
   if (allInputs.length > 1) {
     inputField.remove();
+  }
+
+  // When only 2 inputs remain, make the last remove button gray
+  if (allInputs.length === 2) {
+    const lastBtn = inputsDiv.querySelector(".remove-field");
+    lastBtn.classList.add("disabled");
   }
 }
 

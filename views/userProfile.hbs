@@ -3,15 +3,16 @@
   <div class="profile-sections">
     <div class="user-section">
       <h2>Created Recipes</h2>
-      <div class="recipes-container">
-        {{#if createdRecipes}}
+      {{#if createdRecipes}}
+        <div class="recipes-container-profile">
           {{#each createdRecipes}}
             {{>recipeCard this}}
           {{/each}}
-        {{else}}
-          {{>emptySection item="Created Recipes"}}
-        {{/if}}
-      </div>
+        </div>
+      {{else}}
+        {{>emptySection item="Created Recipes"}}
+      {{/if}}
+
       {{#eq session.currentUser.username username}}
         <a class="button add-recipe" href="/recipes/create">+ Create Recipe</a>
       {{/eq}}
@@ -19,15 +20,15 @@
 
     <div class="user-section">
       <h2>Favorite Recipes</h2>
-      <div class="recipes-container">
-        {{#if favoriteRecipes}}
+      {{#if favoriteRecipes}}
+        <div class="recipes-container-profile">
           {{#each favoriteRecipes}}
             {{>recipeCard this}}
           {{/each}}
-        {{else}}
+        </div>
+      {{else}}
         {{>emptySection item="Favorite Recipes"}}
-        {{/if}}
-      </div>
+      {{/if}}
     </div>
   </div>
 </div>

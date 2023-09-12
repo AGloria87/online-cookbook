@@ -1,20 +1,20 @@
-<form class="recipe-form" action="/recipes/{{id}}/edit" method="POST" enctype="multipart/form-data">
+<form class="recipe-form" action="/recipes/{{recipe.id}}/edit" method="POST" enctype="multipart/form-data">
   <h2>Edit Recipe</h2>
   <div class="recipe-form-inputs">
     <section id="title-form">
       <label>Basic Information</label>
       <div>
         <label>Title</label>
-        <input type="text" name="title" placeholder="Recipe Title" value="{{this.title}}"/>
+        <input type="text" name="title" placeholder="Recipe Title" value="{{recipe.title}}"/>
       </div>
       <div class="category-select">
         <label for="category">Category</label>
         <select name="category">
-          <option value="breakfast" {{#eq category "breakfast"}}selected{{/eq}}>Breakfast</option>
-          <option value="lunch" {{#eq category "lunch"}}selected{{/eq}}>Lunch</option>
-          <option value="dinner" {{#eq category "dinner"}}selected{{/eq}}>Dinner</option>
-          <option value="dessert" {{#eq category "dessert"}}selected{{/eq}}>Dessert</option>
-          <option value="other" {{#eq category "other"}}selected{{/eq}}>Other</option>
+          <option value="breakfast" {{#eq recipe.category "breakfast"}}selected{{/eq}}>Breakfast</option>
+          <option value="lunch" {{#eq recipe.category "lunch"}}selected{{/eq}}>Lunch</option>
+          <option value="dinner" {{#eq recipe.category "dinner"}}selected{{/eq}}>Dinner</option>
+          <option value="dessert" {{#eq recipe.category "dessert"}}selected{{/eq}}>Dessert</option>
+          <option value="other" {{#eq recipe.category "other"}}selected{{/eq}}>Other</option>
         </select>
       </div>
       <div>
@@ -22,7 +22,7 @@
         <div>
           <label for="recipe-image">
             <img
-              src={{photo}}
+              src={{recipe.photo}}
               class="upload-preview"
             />
           </label>
@@ -35,7 +35,7 @@
     <section id="ingredients-form">
       <label>Ingredients</label>
       <div id="ingredients-inputs">
-        {{#each ingredients}}
+        {{#each recipe.ingredients}}
           <div class="ingr-field">
             <input type="text" name="ingr{{@index}}" placeholder="Ingredient" value="{{this}}"/>
             <img src="/images/ui/remove.svg" class="remove-field">
@@ -50,7 +50,7 @@
       <label>Directions</label>
       <div id="directions-inputs">
 
-        {{#each directions}}
+        {{#each recipe.directions}}
           <div class="dir-field">
             <input type="text" name="dir{{@index}}" placeholder="Direction" value="{{this}}"/>
             <img src="/images/ui/remove.svg" class="remove-field">

@@ -85,9 +85,9 @@ router.post("/create", isLoggedIn, fileUploader.single("recipe-image"), async (r
 
     // add new recipe to user's created recipes
     await User.findByIdAndUpdate(author, { $push: { createdRecipes:newRecipe }}, { new: true });
-
-    res.redirect(`/${author.username}`);
+    res.redirect(`/recipes/${newRecipe._id}`);
   }
+
   catch (err) {
     next(err);
   }
@@ -110,11 +110,18 @@ router.get('/:recipeId', async (req, res, next)=>{
 router.get("/:recipeId/edit", isLoggedIn, async (req, res, next) => {
   try {
     const { recipeId } = req.params;
-    const recipe = await Recipe.findById(recipeId)
-    res.render("recipes/edit-recipe", recipe);
+    const { error } = req.session;
+    const recipe = await Recipe.findById(recipeId);
+
+    res.render("recipes/edit-recipe", {
+      recipe, ...(error && { errorMessage: error })
+    });
+
+    delete req.session.error;
   }
+
   catch (err) {
-    console.log(err);
+    next(err);
   }
 });
 
@@ -127,10 +134,23 @@ router.post("/:recipeId/edit", isLoggedIn, fileUploader.single("recipe-image"), 
     const ingredients = [];
     const directions = [];
 
+    if (!title) {
+      req.session.error = "Please add a title.";
+      res.status(400).redirect(`/recipes/${recipeId}/edit`);
+      return;
+    }
+
     for (key in req.body) {
+      if (!req.body[key]) {
+        req.session.error = "Please fill or delete empty ingredient or direction fields.";
+        res.status(400).redirect(`/recipes/${recipeId}/edit`);
+        return;
+      }
+
       if (key.startsWith("ingr")) {
         ingredients.push(req.body[key]);
       }
+
       if (key.startsWith("dir")) {
         directions.push(req.body[key]);
       }
@@ -148,8 +168,9 @@ router.post("/:recipeId/edit", isLoggedIn, fileUploader.single("recipe-image"), 
 
     res.redirect(`/recipes/${recipeId}`);
   }
+
   catch (err) {
-    console.log(err);
+    next(err);
   }
 });
 
@@ -162,7 +183,7 @@ router.post("/:recipeId/delete", isLoggedIn, async (req, res, next) => {
     res.redirect(`/${author.username}`);
   }
   catch (err) {
-    console.log(err);
+    next(err);
   }
 })
 

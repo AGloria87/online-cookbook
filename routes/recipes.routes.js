@@ -179,6 +179,12 @@ router.post("/:recipeId/delete", isLoggedIn, async (req, res, next) => {
   try {
     const { recipeId } = req.params;
     const author = req.session.currentUser;
+
+    await User.findByIdAndUpdate(author._id,
+      { $pull: { createdRecipes: recipeId } },
+      { new: true }
+    );
+
     await Recipe.findByIdAndDelete(recipeId);
     res.redirect(`/${author.username}`);
   }

@@ -3,8 +3,31 @@
     <div>
       <h1>{{details.title}}</h1>
       <img class="recipe-details-img" src="{{details.photo}}" alt="{{details.title}}">
-      {{>starRating rating=details.rating type="detail-rate"}}
-      <p class="details-author">Recipe by <a href="/{{details.author.username}}">{{details.author.username}}</a></p>
+      <div class="details-footer">
+
+      <div>
+        {{>starRating rating=details.rating type="detail-rate"}}
+        <p class="details-author">Recipe by <a href="/{{details.author.username}}">{{details.author.username}}</a></p>
+      </div>
+
+      {{!-- Show Favorite button only if authenticated and viewing other users' recipes --}}
+      {{#if session.currentUser}}
+        {{#neq session.currentUser.username details.author.username}}
+          <form action="/recipes/{{details._id}}/favorites" method="post">
+            <button type="submit">
+              {{#if inFavs}}
+                {{>svg/favFull}}
+                <p>Remove</p>
+              {{else}}
+                {{>svg/favEmpty}}
+                <p>Add</p>
+              {{/if}}
+            </button>
+          </form>
+        {{/neq}}
+      {{/if}}
+      </div>
+
     </div>
     {{>detailsInfo ingredients=details.ingredients directions=details.directions}}
     {{!-- Show Edit and Delete buttons only if authenticated and viewing own recipes --}}

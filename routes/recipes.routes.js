@@ -98,8 +98,24 @@ router.get('/:recipeId', async (req, res, next)=>{
     const { recipeId } = req.params
     const details = await Recipe.findById(recipeId).populate("author");
     const comments = await Comment.find({ recipe: recipeId }).populate('author', 'username');
-    res.render("recipes/detail", { details, comments });
+    const { currentUser } = req.session;
+    let inFavs;
+
+    if (currentUser) {
+      const { favoriteRecipes } = await User
+        .findById(currentUser._id)
+        .select({ favoriteRecipes: 1 });
+
+      inFavs = favoriteRecipes.includes(recipeId);
+    }
+
+    res.render("recipes/detail", {
+      details,
+      comments,
+      ...(currentUser && { inFavs: inFavs })
+    });
   }
+
   catch(err){
     next(err)
   }
@@ -215,6 +231,37 @@ router.post("/:recipeId/feedback", isLoggedIn, async (req, res, next) => {
   }
   catch (err) {
     console.log(err);
+  }
+});
+
+// Add or Remove Recipe to Favorites
+router.post("/:recipeId/favorites", isLoggedIn, async (req, res, next) => {
+  try {
+    const { recipeId } = req.params;
+    const { _id } = req.session.currentUser;
+    const { favoriteRecipes } = await User
+      .findById(_id)
+      .select({ favoriteRecipes : 1 });
+
+    if (favoriteRecipes.includes(recipeId)) {
+      await User.findByIdAndUpdate(_id,
+        { $pull: { favoriteRecipes: recipeId } },
+        { new: true }
+      );
+    }
+
+    else {
+      await User.findByIdAndUpdate(_id,
+        { $push: { favoriteRecipes: recipeId } },
+        { new: true }
+      );
+    }
+
+    res.redirect(`/recipes/${recipeId}`);
+  }
+
+  catch (err) {
+    next(err);
   }
 });
 

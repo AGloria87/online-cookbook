@@ -414,3 +414,18 @@ ul, ol {
   margin: 1vw auto;
   padding: 1vw;
 }
+
+.details-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button:hover .fav-full path {
+  stroke: #df9fb6;
+  fill: #df9fb6;
+}
+
+button:hover .fav-empty path {
+  stroke: #df9fb6;
+}
